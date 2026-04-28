@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rozbor FE modelu</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=12">
+</head>
+<body class="theme-dark">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navigace">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">FE</div>
+        <div>
+          <h1>rozbor FE modelu</h1>
+          <p>Detailní audit výpočtů, kódu a tvrzení konkrétního modelu</p>
+        </div>
+      </div>
+
+      <nav class="nav-list" aria-label="Sekce stránky">
+        <a href="#prehled">Přehled</a>
+        <a href="#tok-dat">Tok dat</a>
+        <a href="#problemy">Problémy</a>
+        <a href="#mapa">Mapa není svět</a>
+        <a href="#zatmeni">Zatmění</a>
+        <a href="#slovnik">Slovník</a>
+      </nav>
+
+      <div class="side-note">
+        <strong>Co se tu rozebírá</strong>
+        <span>Konkrétní projekt AlanSpaceAudits/conceptual_flat_earth_model: jeho demo, zdrojový kód, výpočetní logika, vědecko-astronomická tvrzení.</span>
+      </div>
+    </aside>
+
+    <main>
+      <div class="corner-controls" aria-label="Nastavení stránky">
+        <button id="themeCycle" class="theme-cycle" type="button" aria-label="Změnit barevný režim" title="Změnit barevný režim">Dark</button>
+        <a class="home-corner" href="https://superuserbase.com/">superuserbase.com</a>
+        <button id="langCycle" class="lang-cycle" type="button" aria-label="Změnit jazyk" title="Změnit jazyk">🇨🇿</button>
+      </div>
+      <section id="prehled" class="intro-grid">
+        <div class="intro-copy">
+          <p class="eyebrow">Rozbor konkrétního FE modelu</p>
+          <div class="obliterated-banner" aria-label="Hlavní slogan">
+            <span class="banner-kicker">Case closed</span>
+            <span class="banner-title">FE Model Obliterated</span>
+            <span class="banner-subtitle">in 13 minutes of work with Codex</span>
+          </div>
+          <h2>Programový a logický audit modelu conceptual_flat_earth_model</h2>
+          <p>
+            Tato stránka je rozborem veřejného projektu
+            <strong>Conceptual Flat Earth Model</strong>. Ukazuje, kde přesně
+            model používá hotová astronomická data, kde jen překresluje výsledek
+            do FE scény, kde má ručně laděné konstanty a kde jeho tvrzení
+            naráží na výpočetní nebo vědecký problém.
+          </p>
+          <div class="source-links" aria-label="Odkazy na původní model">
+            <a href="https://alanspaceaudits.github.io/conceptual_flat_earth_model/" target="_blank" rel="noreferrer">Live demo původního modelu</a>
+            <a href="https://github.com/AlanSpaceAudits/conceptual_flat_earth_model" target="_blank" rel="noreferrer">Zdrojový kód na GitHubu</a>
+          </div>
+          <div class="intro-actions">
+            <a class="primary-action" href="#problemy">Otevřít problémy</a>
+            <a class="secondary-action" href="#tok-dat">Ukázat tok dat</a>
+          </div>
+        </div>
+
+        <div class="summary-panel" aria-label="Rychlé shrnutí">
+          <div class="summary-row summary-evidence">
+            <span class="summary-number">12</span>
+            <span class="summary-copy">
+              <strong>nalezených problémů</strong>
+              <small>každý má důkaz v kódu</small>
+            </span>
+          </div>
+          <div class="summary-row summary-critical">
+            <span class="summary-number">6</span>
+            <span class="summary-copy">
+              <strong>kritických bodů</strong>
+              <small>mění význam celého modelu</small>
+            </span>
+          </div>
+          <div class="summary-row summary-zero">
+            <span class="summary-number">0</span>
+            <span class="summary-copy">
+              <strong>implementovaných FE predikcí zatmění</strong>
+              <small>největší slib zůstal prázdný</small>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="explain-strip" aria-label="Jednoduché vysvětlení">
+        <div>
+          <h2>Jednoduché vysvětlení hlavního problému</h2>
+          <p>
+            Model vypadá přesvědčivě hlavně proto, že přesné polohy Slunce,
+            Měsíce a planet nepředpovídá z ploché Země. Vezme již hotové
+            astronomické souřadnice z běžných zdrojů kulaté země a potom je vykreslí na
+            plochý disk a dóm. <strong class="hard-claim">Taková vizualizace může být zajímavá, ale vůbec nedokazuje, že FE geometrie funguje. Naopak dokazuje, že pro FE neexistuje a ani nemůže existovat funkční model.</strong> <br>Celé je to jen chabý pokus o zblbnutí lidí, kteří si nejsou schopni sami ověřit realitu. Celý conceptual_flat_earth_model je tak pouhým falešným lákadlem pro lidi kteří z toho profitují jako je v české republice dominik mrvík, a jinde například Shane. </br>
+          </p>
+        </div>
+      </section>
+
+      <section id="tok-dat" class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Interaktivní rozbor</p>
+          <h2>Odkud se opravdu bere správná obloha?</h2>
+          <p>
+            Klikni na jednotlivé kroky. Každý blok popisuje, co se v kódu děje, proč je to důležité a které auditní
+            body s tím souvisejí.
+          </p>
+        </div>
+
+        <div class="flow-lab">
+          <div class="flow-diagram" id="flowDiagram" aria-label="Tok dat modelu"></div>
+          <div class="flow-detail" id="flowDetail" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="problemy" class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Rozklikávací audit</p>
+          <h2>Všechny nalezené problémy</h2>
+          <p>
+            Použij filtr podle závažnosti nebo otevři kartu. Každá karta má
+            jednoduché vysvětlení, technický důkaz, konkrétní důsledek a
+            samostatné schéma problému.
+          </p>
+        </div>
+
+        <div class="toolbar" aria-label="Filtry problémů">
+          <button class="filter-btn active" data-filter="all" type="button">Vše</button>
+          <button class="filter-btn" data-filter="Kritická" type="button">Kritické</button>
+          <button class="filter-btn" data-filter="Vysoká" type="button">Vysoké</button>
+          <button class="filter-btn" data-filter="Střední" type="button">Střední</button>
+        </div>
+        <div class="severity-legend" aria-label="Legenda závažnosti">
+          <span><b class="dot critical"></b>Kritické: zásadně mění význam modelu</span>
+          <span><b class="dot high"></b>Vysoké: vážný výpočetní nebo logický problém</span>
+          <span><b class="dot medium"></b>Střední: chyba implementace nebo robustnosti</span>
+        </div>
+
+        <div class="problem-grid" id="problemGrid"></div>
+      </section>
+
+      <section id="mapa" class="section-block two-column">
+        <div>
+          <p class="eyebrow">Ukázka projekce</p>
+          <h2>Mapa není fyzický svět</h2>
+          <p>
+            FE model používá severopolární azimutální mapu. Ta může být užitečný
+            obrázek, ale směrem k jihu dramaticky mění velikosti rovnoběžek.
+          </p>
+          <label class="range-label" for="latRange">Zeměpisná šířka</label>
+          <input id="latRange" type="range" min="-89" max="89" value="-60">
+          <div class="range-readout" id="latReadout"></div>
+        </div>
+        <div class="projection-card">
+          <div class="projection-visual" id="projectionVisual" aria-label="Porovnání obvodů rovnoběžek"></div>
+          <div class="projection-stats" id="projectionStats"></div>
+        </div>
+      </section>
+
+      <section id="zatmeni" class="section-block two-column">
+        <div>
+          <p class="eyebrow">Zatmění</p>
+          <h2>Predikce, nebo přehrání seznamu?</h2>
+          <p>
+            Skutečný test modelu je předpověď. Tady jsou zatmění načtená z
+            reálného katalogu AstroPixels/JPL DE405. FE predikční větev je v
+            kódu jen placeholder.
+          </p>
+          <div class="toggle-row">
+            <button class="mode-btn active" data-mode="catalog" type="button">Katalog</button>
+            <button class="mode-btn" data-mode="fe" type="button">FE prediktor</button>
+          </div>
+        </div>
+        <div class="eclipse-demo" id="eclipseDemo" aria-live="polite"></div>
+      </section>
+
+      <section id="slovnik" class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Slovník</p>
+          <h2>Slova, která se na stránce opakují</h2>
+        </div>
+        <div class="glossary-grid">
+          <article>
+            <h3>RA / Dec</h3>
+            <p>Souřadnice na obloze. Něco jako zeměpisná délka a šířka, ale pro hvězdy, Slunce a Měsíc.</p>
+          </article>
+          <article>
+            <h3>Efemeridy</h3>
+            <p>Tabulky, které říkají, kde bude nebeské těleso v určitém čase.</p>
+          </article>
+          <article>
+            <h3>DE405</h3>
+            <p>Přesný astronomický zdroj dat od JPL. Když ho model použije, bere hotové odpovědi z moderní astronomie.</p>
+          </article>
+          <article>
+            <h3>Projekce mapy</h3>
+            <p>Způsob, jak nakreslit kulatý povrch na plochý papír. Každá projekce něco zkreslí.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js?v=12"></script>
+</body>
+</html>
