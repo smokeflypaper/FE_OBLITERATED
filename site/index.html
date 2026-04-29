@@ -3,49 +3,81 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>rozbor FE modelu</title>
+  <title>FE Audit | audit modelu conceptual_flat_earth_model</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=37">
 </head>
 <body class="theme-dark">
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="Navigace">
-      <div class="brand-block">
-        <div class="brand-mark" aria-hidden="true">FE</div>
-        <div>
-          <h1>rozbor FE modelu</h1>
-          <p>Detailní audit výpočtů, kódu a tvrzení konkrétního modelu</p>
+  <div class="app-shell app-shell--dock">
+    <header class="topbar" aria-label="Navigace">
+      <div class="topbar-brand">
+        <div class="brand-mark brand-mark--crosshair" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <circle cx="20" cy="20" r="14"/>
+            <circle cx="20" cy="20" r="3.5" fill="currentColor" stroke="none"/>
+            <line x1="20" y1="2" x2="20" y2="10"/>
+            <line x1="20" y1="30" x2="20" y2="38"/>
+            <line x1="2" y1="20" x2="10" y2="20"/>
+            <line x1="30" y1="20" x2="38" y2="20"/>
+          </svg>
+        </div>
+        <div class="topbar-brand-text">
+          <h1>FE Audit</h1>
+          <p>audit modelu, který si vyrobil obraz reality</p>
         </div>
       </div>
 
-      <nav class="nav-list" aria-label="Sekce stránky">
-        <a href="#prehled">Přehled</a>
-        <a href="#tok-dat">Tok dat</a>
-        <a href="#problemy">Problémy</a>
-        <a href="#mapa">Mapa není svět</a>
-        <a href="#zatmeni">Zatmění</a>
-        <a href="#slovnik">Slovník</a>
+      <nav class="topbar-nav" aria-label="Sekce stránky">
+        <a href="#prehled"><span class="nav-title">Přehled</span></a>
+        <a href="#tok-dat"><span class="nav-title">Tok dat</span></a>
+        <a href="#problemy"><span class="nav-title">Problémy</span><span class="nav-badge nav-badge--crit">6</span></a>
+        <a href="#mapa"><span class="nav-title">Mapa</span></a>
+        <a href="#zatmeni"><span class="nav-title">Zatmění</span></a>
+        <a href="#slovnik"><span class="nav-title">Slovník</span></a>
       </nav>
 
-      <div class="side-note">
-        <strong>Co se tu rozebírá</strong>
-        <span>Konkrétní projekt AlanSpaceAudits/conceptual_flat_earth_model: jeho demo, zdrojový kód, výpočetní logika, vědecko-astronomická tvrzení.</span>
+      <div class="topbar-controls">
+        <button id="themeCycle" class="theme-cycle" type="button" aria-label="Změnit barevný režim" title="Změnit barevný režim">
+          <span class="theme-cycle-icon" aria-hidden="true"></span>
+        </button>
+        <button id="langCycle" class="lang-cycle" type="button" aria-label="Změnit jazyk" title="Změnit jazyk">🇨🇿</button>
+        <a class="home-corner" href="https://superuserbase.com/">superuserbase.com</a>
       </div>
+
+      <button class="topbar-burger" type="button" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <aside class="floating-dock" aria-label="Postup čtení">
+      <div class="dock-progress" aria-hidden="true">
+        <svg viewBox="0 0 44 44" width="44" height="44">
+          <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
+          <circle class="dock-progress-arc" cx="22" cy="22" r="18" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="113.097" stroke-dashoffset="113.097" stroke-linecap="round" transform="rotate(-90 22 22)"/>
+        </svg>
+        <span class="dock-progress-num" data-dock-percent>0%</span>
+      </div>
+      <ol class="dock-mini" aria-label="Minimapa sekcí">
+        <li><a href="#prehled" data-dock-link title="Přehled"><span></span></a></li>
+        <li><a href="#tok-dat" data-dock-link title="Tok dat"><span></span></a></li>
+        <li><a href="#problemy" data-dock-link title="Problémy"><span></span></a></li>
+        <li><a href="#mapa" data-dock-link title="Mapa"><span></span></a></li>
+        <li><a href="#zatmeni" data-dock-link title="Zatmění"><span></span></a></li>
+        <li><a href="#slovnik" data-dock-link title="Slovník"><span></span></a></li>
+      </ol>
+      <button class="dock-top" type="button" aria-label="Zpět nahoru" title="Zpět nahoru">↑</button>
     </aside>
 
     <main>
-      <div class="corner-controls" aria-label="Nastavení stránky">
-        <button id="themeCycle" class="theme-cycle" type="button" aria-label="Změnit barevný režim" title="Změnit barevný režim">Dark</button>
-        <a class="home-corner" href="https://superuserbase.com/">superuserbase.com</a>
-        <button id="langCycle" class="lang-cycle" type="button" aria-label="Změnit jazyk" title="Změnit jazyk">🇨🇿</button>
-      </div>
       <section id="prehled" class="intro-grid">
         <div class="intro-copy">
           <p class="eyebrow">Rozbor konkrétního FE modelu</p>
           <div class="obliterated-banner" aria-label="Hlavní slogan">
             <span class="banner-kicker">Case closed</span>
-            <span class="banner-title">FE Model Obliterated</span>
-            <span class="banner-subtitle">in 13 minutes of work with Codex</span>
+            <span class="banner-stack">
+              <span class="banner-title">FE Model Obliterated</span>
+              <span class="banner-subtitle">cracked in minutes with Codex</span>
+            </span>
           </div>
           <h2>Programový a logický audit modelu conceptual_flat_earth_model</h2>
           <p>
@@ -56,12 +88,25 @@
             naráží na výpočetní nebo vědecký problém.
           </p>
           <div class="source-links" aria-label="Odkazy na původní model">
-            <a href="https://alanspaceaudits.github.io/conceptual_flat_earth_model/" target="_blank" rel="noreferrer">Live demo původního modelu</a>
-            <a href="https://github.com/AlanSpaceAudits/conceptual_flat_earth_model" target="_blank" rel="noreferrer">Zdrojový kód na GitHubu</a>
-          </div>
-          <div class="intro-actions">
-            <a class="primary-action" href="#problemy">Otevřít problémy</a>
-            <a class="secondary-action" href="#tok-dat">Ukázat tok dat</a>
+            <a class="source-badge source-badge--live" href="https://alanspaceaudits.github.io/conceptual_flat_earth_model/" target="_blank" rel="noreferrer">
+              <svg class="source-badge-icon" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="10" cy="10" r="7.5"/>
+                <path d="M2.5 10h15M10 2.5a11 11 0 0 1 0 15M10 2.5a11 11 0 0 0 0 15"/>
+              </svg>
+              <span class="source-badge-label">Live demo původního modelu</span>
+              <svg class="source-badge-arrow" viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4"/>
+              </svg>
+            </a>
+            <a class="source-badge source-badge--repo" href="https://github.com/AlanSpaceAudits/conceptual_flat_earth_model" target="_blank" rel="noreferrer">
+              <svg class="source-badge-icon" viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+              </svg>
+              <span class="source-badge-label">Zdrojový kód na GitHubu</span>
+              <svg class="source-badge-arrow" viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4"/>
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -92,13 +137,8 @@
 
       <section class="explain-strip" aria-label="Jednoduché vysvětlení">
         <div>
-          <h2>Jednoduché vysvětlení hlavního problému</h2>
-          <p>
-            Model vypadá přesvědčivě hlavně proto, že přesné polohy Slunce,
-            Měsíce a planet nepředpovídá z ploché Země. Vezme již hotové
-            astronomické souřadnice z běžných zdrojů kulaté země a potom je vykreslí na
-            plochý disk a dóm. <strong class="hard-claim">Taková vizualizace může být zajímavá, ale vůbec nedokazuje, že FE geometrie funguje. Naopak dokazuje, že pro FE neexistuje a ani nemůže existovat funkční model.</strong> <br>Celé je to jen chabý pokus o zblbnutí lidí, kteří si nejsou schopni sami ověřit realitu. Celý conceptual_flat_earth_model je tak pouhým falešným lákadlem pro lidi kteří z toho profitují jako je v české republice dominik mrvík, a jinde například Shane. </br>
-          </p>
+          <h2></h2>
+          <p></p>
         </div>
       </section>
 
@@ -131,14 +171,9 @@
 
         <div class="toolbar" aria-label="Filtry problémů">
           <button class="filter-btn active" data-filter="all" type="button">Vše</button>
-          <button class="filter-btn" data-filter="Kritická" type="button">Kritické</button>
-          <button class="filter-btn" data-filter="Vysoká" type="button">Vysoké</button>
-          <button class="filter-btn" data-filter="Střední" type="button">Střední</button>
-        </div>
-        <div class="severity-legend" aria-label="Legenda závažnosti">
-          <span><b class="dot critical"></b>Kritické: zásadně mění význam modelu</span>
-          <span><b class="dot high"></b>Vysoké: vážný výpočetní nebo logický problém</span>
-          <span><b class="dot medium"></b>Střední: chyba implementace nebo robustnosti</span>
+          <button class="filter-btn filter-btn--severity" data-filter="Kritická" type="button" title="Kritické: zásadně mění význam modelu"><b class="dot critical" aria-hidden="true"></b><span>Kritické</span></button>
+          <button class="filter-btn filter-btn--severity" data-filter="Vysoká" type="button" title="Vysoké: vážný výpočetní nebo logický problém"><b class="dot high" aria-hidden="true"></b><span>Vysoké</span></button>
+          <button class="filter-btn filter-btn--severity" data-filter="Střední" type="button" title="Střední: chyba implementace nebo robustnosti"><b class="dot medium" aria-hidden="true"></b><span>Střední</span></button>
         </div>
 
         <div class="problem-grid" id="problemGrid"></div>
@@ -185,27 +220,23 @@
           <h2>Slova, která se na stránce opakují</h2>
         </div>
         <div class="glossary-grid">
-          <article>
-            <h3>RA / Dec</h3>
-            <p>Souřadnice na obloze. Něco jako zeměpisná délka a šířka, ale pro hvězdy, Slunce a Měsíc.</p>
-          </article>
-          <article>
-            <h3>Efemeridy</h3>
-            <p>Tabulky, které říkají, kde bude nebeské těleso v určitém čase.</p>
-          </article>
-          <article>
-            <h3>DE405</h3>
-            <p>Přesný astronomický zdroj dat od JPL. Když ho model použije, bere hotové odpovědi z moderní astronomie.</p>
-          </article>
-          <article>
-            <h3>Projekce mapy</h3>
-            <p>Způsob, jak nakreslit kulatý povrch na plochý papír. Každá projekce něco zkreslí.</p>
-          </article>
+          <article><h3></h3><p></p></article>
+          <article><h3></h3><p></p></article>
+          <article><h3></h3><p></p></article>
+          <article><h3></h3><p></p></article>
+          <article><h3></h3><p></p></article>
+          <article><h3></h3><p></p></article>
+          <article><h3></h3><p></p></article>
         </div>
       </section>
+
+      <footer class="audit-footer" aria-label="Závěr stránky">
+        <p class="audit-footer-line">Žádný dóm nebyl při tomto auditu fyzicky poškozen. Jen argumentace.</p>
+        <p class="audit-footer-meta">Case closed.</p>
+      </footer>
     </main>
   </div>
 
-  <script src="app.js?v=12"></script>
+  <script src="app.js?v=42"></script>
 </body>
 </html>

@@ -1,0 +1,332 @@
+- generic [ref=e2]:
+  - banner "Navigation" [ref=e3]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e9]:
+        - heading "FE model audit" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Detailed audit of calculations, code and claims in one specific model
+    - navigation "Page sections" [ref=e12]:
+      - link "Overview" [ref=e13] [cursor=pointer]:
+        - /url: "#prehled"
+        - generic [ref=e14]: Overview
+      - link "Data flow" [ref=e15] [cursor=pointer]:
+        - /url: "#tok-dat"
+        - generic [ref=e16]: Data flow
+      - link "Problems 6" [ref=e17] [cursor=pointer]:
+        - /url: "#problemy"
+        - generic [ref=e18]: Problems
+        - generic [ref=e19]: "6"
+      - link "A map is not the world" [ref=e20] [cursor=pointer]:
+        - /url: "#mapa"
+        - generic [ref=e21]: A map is not the world
+      - link "Eclipses" [ref=e22] [cursor=pointer]:
+        - /url: "#zatmeni"
+        - generic [ref=e23]: Eclipses
+      - link "Glossary" [ref=e24] [cursor=pointer]:
+        - /url: "#slovnik"
+        - generic [ref=e25]: Glossary
+    - generic [ref=e26]:
+      - 'button "Change color profile: Dark" [ref=e27] [cursor=pointer]':
+        - img [ref=e29]
+      - button "Change language" [ref=e31] [cursor=pointer]: 🇬🇧
+      - link "superuserbase.com" [ref=e32] [cursor=pointer]:
+        - /url: https://superuserbase.com/
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - paragraph [ref=e36]: Audit of one specific FE model
+        - generic "Hlavní slogan" [ref=e37]:
+          - generic [ref=e38]: Case closed
+          - generic [ref=e39]:
+            - generic [ref=e40]: FE Model Obliterated
+            - generic [ref=e41]: cracked in minutes with Codex
+        - heading "Code and logic audit of conceptual_flat_earth_model" [level=2] [ref=e42]
+        - paragraph [ref=e43]:
+          - text: This page audits the public project
+          - strong [ref=e44]: Conceptual Flat Earth Model
+          - text: . It shows exactly where the model uses ready-made astronomical data, where it turns them into a locally correct sky for one observer, where it only redraws that result into an FE scene, where it relies on hand-tuned constants, and where its claims hit computational or scientific problems.
+        - generic "Links to the original model" [ref=e45]:
+          - link "Original model live demo" [ref=e46] [cursor=pointer]:
+            - /url: https://alanspaceaudits.github.io/conceptual_flat_earth_model/
+            - img [ref=e47]
+            - generic [ref=e50]: Original model live demo
+            - img [ref=e51]
+          - link "Source code on GitHub" [ref=e53] [cursor=pointer]:
+            - /url: https://github.com/AlanSpaceAudits/conceptual_flat_earth_model
+            - img [ref=e54]
+            - generic [ref=e56]: Source code on GitHub
+            - img [ref=e57]
+      - generic "Quick summary" [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]: "12"
+          - generic [ref=e62]:
+            - strong [ref=e63]: documented problems
+            - generic [ref=e64]: each one has code evidence
+        - generic [ref=e65]:
+          - generic [ref=e66]: "6"
+          - generic [ref=e67]:
+            - strong [ref=e68]: critical points
+            - generic [ref=e69]: they change the whole model
+        - generic [ref=e70]:
+          - generic [ref=e71]: "0"
+          - generic [ref=e72]:
+            - strong [ref=e73]: implemented FE eclipse predictions
+            - generic [ref=e74]: the biggest promise stayed empty
+    - region "Simple explanation" [ref=e75]:
+      - generic [ref=e76]:
+        - heading "Simple explanation of the main problem" [level=2] [ref=e77]
+        - paragraph [ref=e78]:
+          - text: The model only looks convincing because it does not compute the precise positions of the Sun, Moon and planets from a flat Earth at all. It takes ready-made astronomical coordinates from standard astronomy, converts them into a local sky for one specific observer, and only then redraws them onto a flat disk and dome. From the very beginning it stands on someone else’s correct result, not on its own FE geometry.
+          - strong [ref=e79]: THIS IS NOT EVIDENCE FOR A FLAT EARTH. IT IS EVIDENCE THAT WITHOUT BORROWED RESULTS FROM STANDARD ASTRONOMY THIS MODEL CAN DO NOTHING AT ALL.
+          - text: The whole trick is that the hardest part of the work has already been done in advance by ordinary astronomy. Correct data, correct orientation and a locally correct-looking sky all arrive ready-made. The FE layer adds no new explanation of reality; it merely repackages someone else’s result into a different drawing and pretends that it discovered something.
+          - strong [ref=e80]: IF THIS IS PRESENTED AS EVIDENCE FOR A FLAT EARTH, IT IS MANIPULATION OF READY-MADE DATA, NOT AN HONEST AND TRUTHFUL MODEL OF REALITY.
+          - text: But the moment you ask the model to do anything more than produce a locally impressive picture for one viewer, it falls apart immediately. A real model of reality must sustain one shared world for multiple observers at the same time, not a separate picture for each observer. No such consistent FE geometry exists here, which is why the model fails exactly when it is supposed to explain reality instead of merely creating an impression.
+          - strong [ref=e81]: THIS IS NOT AN ALTERNATIVE COSMOLOGY OR ALTERNATIVE PHYSICS. IT IS A NON-FUNCTIONAL PSEUDO-MODEL THAT CANNOT SUSTAIN ONE CONSISTENT REALITY FOR MULTIPLE OBSERVERS AT ONCE.
+          - generic [ref=e82]: That is why it is no longer enough to speak only about a mistake, a weakness or an unfinished model. If someone takes other people’s correct data, redraws them into an FE scene and sells that as confirmation of a flat Earth, they create the false impression that FE actually explains something. It is not a discovery, not alternative science, and not even an honest dead end. It is a misleading construction that rests on other people’s results and presents them as its own triumph.
+          - strong [ref=e83]: IN THE END THIS IS NOT A DISCOVERY OR A WORKING EXPLANATION OF THE WORLD, BUT A FRAUD-LIKE PRESENTATION OF OTHER PEOPLE’S RESULTS DISGUISED AS FE.
+          - generic [ref=e84]: "The method is simple but effective: you take external, verified results, redraw them into a different scene, hide their dependence on the original model, and present the whole thing as your own proof. This is exactly how FE projects mislead people and then profit from it by selling mugs, caps, maps and other goods or services while standing on work done by someone else. If you wanted to demonstrate the exact meaning of the word FRAUD, this is what it would look like."
+          - strong [ref=e85]: FRAUD
+          - emphasis [ref=e86]:
+            - text: This entire “masquerade” is just a weak attempt to fool people who are unable or unwilling to verify reality for themselves. This “revolutionary” conceptual_flat_earth_model is in fact only a false lure on which various spreaders of this content make money, selling mugs, caps, maps or apps that in some cases even compromise private data such as home location, phone numbers or names. These people are frauds who built a business on deceiving others, including for example
+            - strong [ref=e87]: Eric Dubay
+            - text: ","
+            - strong [ref=e88]: Mark Sargent
+            - text: ","
+            - strong [ref=e89]: David Weiss
+            - text: ","
+            - strong [ref=e90]: Nathan Thompson
+            - text: ","
+            - strong [ref=e91]: Austin Whitsitt
+            - text: or
+            - strong [ref=e92]: Alan
+            - text: ; and many others around the world, as well as in the Czech Republic for example
+            - strong [ref=e93]: Dominik Mrvík
+            - text: ", who merely takes foreign FE content, translates it into Czech and profits from it as well."
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - paragraph [ref=e96]: Interactive audit
+        - heading "Where does the correct sky really come from?" [level=2] [ref=e97]
+        - paragraph [ref=e98]: Click each step. Every block explains what the code does, why it matters, and which audit points connect to it.
+      - generic [ref=e99]:
+        - generic "Model data flow" [ref=e100]:
+          - button "1. Ready-made astronomical data DE405, Meeus, VSOP87 →" [ref=e101] [cursor=pointer]:
+            - img [ref=e103]
+            - generic [ref=e107]:
+              - strong [ref=e108]: 1. Ready-made astronomical data
+              - text: DE405, Meeus, VSOP87
+            - text: →
+          - button "2. Celestial coordinates RA / Dec →" [ref=e109] [cursor=pointer]:
+            - img [ref=e111]:
+              - generic [ref=e115]: RA/Dec
+            - generic [ref=e116]:
+              - strong [ref=e117]: 2. Celestial coordinates
+              - text: RA / Dec
+            - text: →
+          - button "3. Local sky azimuth / elevation →" [ref=e118] [cursor=pointer]:
+            - img [ref=e120]
+            - generic [ref=e125]:
+              - strong [ref=e126]: 3. Local sky
+              - text: azimuth / elevation
+            - text: →
+          - button "4. FE drawing disk and dome" [ref=e127] [cursor=pointer]:
+            - img [ref=e129]
+            - generic [ref=e134]:
+              - strong [ref=e135]: 4. FE drawing
+              - text: disk and dome
+        - generic [ref=e136]:
+          - heading "1. Ready-made astronomical data" [level=3] [ref=e137]
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - strong [ref=e140]: What this step does
+              - paragraph [ref=e141]: The model takes RA/Dec values from standard astronomical sources. Accuracy therefore comes from imported ephemerides, not from a flat map.
+            - generic [ref=e142]:
+              - strong [ref=e143]: Why this is a problem
+              - paragraph [ref=e144]: If a body position is already imported from precise tables, FE geometry did not have to explain or predict it.
+            - generic [ref=e145]:
+              - strong [ref=e146]: Concrete example
+              - paragraph [ref=e147]: The default setting uses BodySource = astropixels. That means the Sun and Moon go through AstroPixels/JPL DE405 data.
+            - generic [ref=e148]:
+              - strong [ref=e149]: Evidence in code
+              - paragraph [ref=e150]:
+                - code [ref=e151]: source/js/core/app.js:252; source/js/core/ephemerisAstropixels.js:58; source/js/core/ephemerisAstropixels.js:123
+              - generic [ref=e152]:
+                - generic [ref=e153]: FE-001
+                - generic [ref=e154]: FE-005
+                - generic [ref=e155]: FE-008
+    - generic [ref=e156]:
+      - generic [ref=e157]:
+        - paragraph [ref=e158]: Expandable audit
+        - heading "All documented problems" [level=2] [ref=e159]
+        - paragraph [ref=e160]: Use the severity filter or open a card. Each card contains a simple explanation, technical evidence, concrete consequence, and its own diagram.
+      - generic "Problem filters" [ref=e161]:
+        - button "All" [ref=e162] [cursor=pointer]
+        - button "Critical" [ref=e163] [cursor=pointer]:
+          - generic [ref=e165]: Critical
+        - button "High" [ref=e166] [cursor=pointer]:
+          - generic [ref=e168]: High
+        - button "Medium" [ref=e169] [cursor=pointer]:
+          - generic [ref=e171]: Medium
+      - generic [ref=e172]:
+        - article [ref=e173]:
+          - button "FE-000 The model only works as a picture for one observer The code can produce a locally correct-looking sky for a chosen viewer, but that is not yet a model of reality shared by multiple observers at the same time. Critical" [ref=e174] [cursor=pointer]:
+            - generic [ref=e175]: FE-000
+            - generic [ref=e176]:
+              - strong [ref=e177]: The model only works as a picture for one observer
+              - generic [ref=e178]: The code can produce a locally correct-looking sky for a chosen viewer, but that is not yet a model of reality shared by multiple observers at the same time.
+            - generic [ref=e179]: Critical
+        - article [ref=e180]:
+          - button "FE-001 The model uses ready-made DE405 ephemerides The model claims to show a working FE sky, but it takes precise positions from ready-made astronomical tables. Critical" [ref=e181] [cursor=pointer]:
+            - generic [ref=e182]: FE-001
+            - generic [ref=e183]:
+              - strong [ref=e184]: The model uses ready-made DE405 ephemerides
+              - generic [ref=e185]: The model claims to show a working FE sky, but it takes precise positions from ready-made astronomical tables.
+            - generic [ref=e186]: Critical
+        - article [ref=e187]:
+          - button "FE-002 The observed sky is computed through a globe transform The model says “flat world”, but for observed altitude and direction it uses a standard local sky computed from RA/Dec. Critical" [ref=e188] [cursor=pointer]:
+            - generic [ref=e189]: FE-002
+            - generic [ref=e190]:
+              - strong [ref=e191]: The observed sky is computed through a globe transform
+              - generic [ref=e192]: The model says “flat world”, but for observed altitude and direction it uses a standard local sky computed from RA/Dec.
+            - generic [ref=e193]: Critical
+        - article [ref=e194]:
+          - button "FE-003 The lat/long grid is hard-coded as an AE map projection The FE disk is a map projection. A projection can be a useful picture, but it is not automatically the physical shape of the world. Critical" [ref=e195] [cursor=pointer]:
+            - generic [ref=e196]: FE-003
+            - generic [ref=e197]:
+              - strong [ref=e198]: The lat/long grid is hard-coded as an AE map projection
+              - generic [ref=e199]: The FE disk is a map projection. A projection can be a useful picture, but it is not automatically the physical shape of the world.
+            - generic [ref=e200]: Critical
+        - article [ref=e201]:
+          - button "FE-004 Body heights are hand-tuned bands The height of the Sun, Moon and planets above the dome is derived from a chosen band, not from independent light physics. Critical" [ref=e202] [cursor=pointer]:
+            - generic [ref=e203]: FE-004
+            - generic [ref=e204]:
+              - strong [ref=e205]: Body heights are hand-tuned bands
+              - generic [ref=e206]: The height of the Sun, Moon and planets above the dome is derived from a chosen band, not from independent light physics.
+            - generic [ref=e207]: Critical
+        - article [ref=e208]:
+          - button "FE-005 Eclipses are replayed from a real catalogue Eclipses are not found by an FE predictor. They are loaded from a real catalogue and replayed. Critical" [ref=e209] [cursor=pointer]:
+            - generic [ref=e210]: FE-005
+            - generic [ref=e211]:
+              - strong [ref=e212]: Eclipses are replayed from a real catalogue
+              - generic [ref=e213]: Eclipses are not found by an FE predictor. They are loaded from a real catalogue and replayed.
+            - generic [ref=e214]: Critical
+        - article [ref=e215]:
+          - button "FE-006 The eclipse shadow uses chosen FE radii The eclipse shadow depends on chosen FE Sun/Moon radii and catalogue magnitude. High" [ref=e216] [cursor=pointer]:
+            - generic [ref=e217]: FE-006
+            - generic [ref=e218]:
+              - strong [ref=e219]: The eclipse shadow uses chosen FE radii
+              - generic [ref=e220]: The eclipse shadow depends on chosen FE Sun/Moon radii and catalogue magnitude.
+            - generic [ref=e221]: High
+        - article [ref=e222]:
+          - button "FE-007 GeoC planets have no retrograde motion Real planets show retrograde motion. One planetary pipeline in the model admits it is missing. High" [ref=e223] [cursor=pointer]:
+            - generic [ref=e224]: FE-007
+            - generic [ref=e225]:
+              - strong [ref=e226]: GeoC planets have no retrograde motion
+              - generic [ref=e227]: Real planets show retrograde motion. One planetary pipeline in the model admits it is missing.
+            - generic [ref=e228]: High
+        - article [ref=e229]:
+          - button "FE-008 Outside the data range it returns a fake position When the model has no data, it should admit the error. Instead it returns a valid-looking RA=0, Dec=0 coordinate. High" [ref=e230] [cursor=pointer]:
+            - generic [ref=e231]: FE-008
+            - generic [ref=e232]:
+              - strong [ref=e233]: Outside the data range it returns a fake position
+              - generic [ref=e234]: When the model has no data, it should admit the error. Instead it returns a valid-looking RA=0, Dec=0 coordinate.
+            - generic [ref=e235]: High
+        - article [ref=e236]:
+          - button "FE-009 The first update computes with an unset value The first calculation uses a value that has not been set yet, producing NaN. Medium" [ref=e237] [cursor=pointer]:
+            - generic [ref=e238]: FE-009
+            - generic [ref=e239]:
+              - strong [ref=e240]: The first update computes with an unset value
+              - generic [ref=e241]: The first calculation uses a value that has not been set yet, producing NaN.
+            - generic [ref=e242]: Medium
+        - article [ref=e243]:
+          - button "FE-010 Moon phases are not FE illumination Moon phases are taken from angular geometry of celestial vectors, not from an FE light model. High" [ref=e244] [cursor=pointer]:
+            - generic [ref=e245]: FE-010
+            - generic [ref=e246]:
+              - strong [ref=e247]: Moon phases are not FE illumination
+              - generic [ref=e248]: Moon phases are taken from angular geometry of celestial vectors, not from an FE light model.
+            - generic [ref=e249]: High
+        - article [ref=e250]:
+          - 'button "FE-011 The page itself says this is a conceptual model The live demo uses cautious language: conceptual model, optical dome, and fictitious observer. High" [ref=e251] [cursor=pointer]':
+            - generic [ref=e252]: FE-011
+            - generic [ref=e253]:
+              - strong [ref=e254]: The page itself says this is a conceptual model
+              - generic [ref=e255]: "The live demo uses cautious language: conceptual model, optical dome, and fictitious observer."
+            - generic [ref=e256]: High
+    - generic [ref=e257]:
+      - generic [ref=e258]:
+        - paragraph [ref=e259]: Projection demo
+        - heading "A map is not the physical world" [level=2] [ref=e260]
+        - paragraph [ref=e261]: The FE model uses a north-pole azimuthal map. That can be a useful drawing, but toward the south it drastically changes the size of parallels.
+        - generic [ref=e262]: Latitude
+        - slider "Latitude" [ref=e263]: "-60"
+        - generic [ref=e264]: "Selected parallel: 60° south"
+      - generic [ref=e265]:
+        - generic "Comparison of parallel circumferences" [ref=e266]:
+          - img [ref=e267]:
+            - generic [ref=e268]: Globe
+            - generic [ref=e271]: AE disk
+        - generic [ref=e275]:
+          - generic [ref=e276]:
+            - text: Globe
+            - strong [ref=e277]: 0.50x
+            - text: circumference vs equator
+          - generic [ref=e278]:
+            - text: AE disk
+            - strong [ref=e279]: 1.67x
+            - text: circumference vs equator
+          - generic [ref=e280]:
+            - text: Difference
+            - strong [ref=e281]: 3.3x
+            - text: AE versus globe
+    - generic [ref=e282]:
+      - generic [ref=e283]:
+        - paragraph [ref=e284]: Eclipses
+        - heading "Prediction, or replaying a list?" [level=2] [ref=e285]
+        - paragraph [ref=e286]: The real test of a model is prediction. Here the eclipses are loaded from a real AstroPixels/JPL DE405 catalogue. The FE prediction branch in the code is only a placeholder.
+        - generic [ref=e287]:
+          - button "Catalogue" [ref=e288] [cursor=pointer]
+          - button "FE predictor" [ref=e289] [cursor=pointer]
+      - generic [ref=e291]:
+        - generic [ref=e292]:
+          - generic [ref=e293]: Done
+          - generic [ref=e294]:
+            - strong [ref=e295]: Eclipse catalogue
+            - paragraph [ref=e296]: The code contains a list of real eclipses from AstroPixels/JPL DE405.
+        - generic [ref=e297]:
+          - generic [ref=e298]: Done
+          - generic [ref=e299]:
+            - strong [ref=e300]: Time refinement
+            - paragraph [ref=e301]: The model searches for a minimum near a known time, but it does not start from zero.
+        - generic [ref=e302]:
+          - generic [ref=e303]: Problem
+          - generic [ref=e304]:
+            - strong [ref=e305]: This is not FE prediction
+            - paragraph [ref=e306]: Using someone else’s list is not the same as predicting eclipses with your own model.
+    - generic [ref=e307]:
+      - generic [ref=e308]:
+        - paragraph [ref=e309]: Glossary
+        - heading "Key audit terms" [level=2] [ref=e310]
+      - generic [ref=e311]:
+        - article [ref=e312]:
+          - heading "RA / Dec" [level=3] [ref=e313]
+          - paragraph [ref=e314]: Sky coordinates. Like longitude and latitude, but for stars, the Sun and the Moon.
+        - article [ref=e315]:
+          - heading "Ephemerides" [level=3] [ref=e316]
+          - paragraph [ref=e317]: Tables that say where a celestial body will be at a given time.
+        - article [ref=e318]:
+          - heading "DE405" [level=3] [ref=e319]
+          - paragraph [ref=e320]: A precise astronomical data source from JPL. When the model uses it, it imports answers from modern astronomy.
+        - article [ref=e321]:
+          - heading "Map projection" [level=3] [ref=e322]
+          - paragraph [ref=e323]: A method for drawing a curved surface on flat paper. Every projection distorts something.
+        - article [ref=e324]:
+          - heading "Subsolar point" [level=3] [ref=e325]
+          - paragraph [ref=e326]: The spot on Earth directly below the Sun. The Sun is at zenith (overhead) there.
+        - article [ref=e327]:
+          - heading "AE projection" [level=3] [ref=e328]
+          - paragraph [ref=e329]: North-pole azimuthal equidistant projection. The circular map the FE model presents as the actual shape of the world.
+        - article [ref=e330]:
+          - heading "Retrograde motion" [level=3] [ref=e331]
+          - paragraph [ref=e332]: The occasional backward loop of a planet across the sky. The FE model does not handle it.
+    - generic "Page ending" [ref=e333]:
+      - paragraph [ref=e334]: No dome was physically harmed during this audit. Only the argument.
+      - paragraph [ref=e335]: Case closed.

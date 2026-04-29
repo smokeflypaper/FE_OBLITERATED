@@ -38,7 +38,7 @@ const problems = [
       'source/js/core/transforms.js:65 - localGlobeCoordToAngles(...) počítá azimut a elevaci',
       'source/js/core/app.js:558 - SunAnglesGlobe ukládá pozorovanou výšku a směr Slunce'
     ],
-    visual: 'Postavička pozorovatele, nad ní lokální obloha, až potom disk.',
+    visual: 'Pozice pozorovatele, nad ní lokální obloha, až potom disk.',
     conclusion: 'FE scéna není zdroj pozorování. Je to obraz po standardním výpočtu oblohy.'
   },
   {

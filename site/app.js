@@ -38,7 +38,7 @@ const problems = [
       'source/js/core/transforms.js:65 - localGlobeCoordToAngles(...) počítá azimut a elevaci',
       'source/js/core/app.js:558 - SunAnglesGlobe ukládá pozorovanou výšku a směr Slunce'
     ],
-    visual: 'Postavička pozorovatele, nad ní lokální obloha, až potom disk.',
+    visual: 'Vlevo vzniká pozorovaná výška a směr. Vpravo FE disk dostává hotový směr, který s jeho vlastní geometrií nesedí.',
     conclusion: 'FE scéna není zdroj pozorování. Je to obraz po standardním výpočtu oblohy.'
   },
   {
@@ -247,10 +247,71 @@ const THEME_LABELS = {
   ruby: 'Ruby'
 };
 
+const THEME_ICONS = {
+  light: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4.2"/>
+      <path d="M12 2.5v2.8M12 18.7v2.8M21.5 12h-2.8M5.3 12H2.5M18.7 5.3l-2 2M7.3 16.7l-2 2M18.7 18.7l-2-2M7.3 7.3l-2-2"/>
+    </svg>
+  `,
+  dark: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+      <path d="M14.8 2.6c-3.8.8-6.7 4.2-6.7 8.3 0 4.7 3.8 8.5 8.5 8.5 1.6 0 3-.4 4.3-1.2-1 2.1-3.1 3.6-5.6 3.9-.4 0-.8.1-1.2.1-5.5 0-10-4.5-10-10 0-4.8 3.4-8.8 8-9.6.9-.2 1.9-.2 2.7 0Z"/>
+    </svg>
+  `,
+  contrast: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8"/>
+      <path d="M12 4a8 8 0 0 1 0 16Z"/>
+    </svg>
+  `,
+  paper: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 3.5h7l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20V5A1.5 1.5 0 0 1 7.5 3.5Z"/>
+      <path d="M14 3.5V8h4"/>
+      <path d="M8.5 11h7M8.5 14.5h7M8.5 18h5"/>
+    </svg>
+  `,
+  ocean: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 13.5c1.4 0 1.4-1 2.8-1s1.4 1 2.8 1 1.4-1 2.8-1 1.4 1 2.8 1 1.4-1 2.8-1 1.4 1 2.8 1"/>
+      <path d="M3 17.5c1.4 0 1.4-1 2.8-1s1.4 1 2.8 1 1.4-1 2.8-1 1.4 1 2.8 1 1.4-1 2.8-1 1.4 1 2.8 1"/>
+      <path d="M7 9a5 5 0 0 1 10 0"/>
+    </svg>
+  `,
+  forest: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5 6.5 10h11L12 3.5Z"/>
+      <path d="M12 8 5 16h14L12 8Z"/>
+      <path d="M12 16v4.5"/>
+    </svg>
+  `,
+  ruby: `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 4.5h10l3 4.2L12 20.5 4 8.7 7 4.5Z"/>
+      <path d="M9 4.5 7 8.7h10L15 4.5M12 20.5 10.2 8.7M12 20.5l1.8-11.8"/>
+    </svg>
+  `
+};
+
 const uiText = {
   cs: {
-    pageTitle: 'rozbor FE modelu',
-    brandSubtitle: 'Detailní audit výpočtů, kódu a tvrzení konkrétního modelu',
+    pageTitle: 'FE Audit',
+    documentTitle: 'FE Audit | audit modelu conceptual_flat_earth_model',
+    brandSubtitle: 'audit modelu, který si vyrobil obraz reality',
+    headerLabel: 'Navigace',
+    sectionsNavLabel: 'Sekce stránky',
+    burgerOpenMenu: 'Otevřít menu',
+    readingProgressLabel: 'Postup čtení',
+    miniMapLabel: 'Minimapa sekcí',
+    backToTop: 'Zpět nahoru',
+    sourceLinksLabel: 'Odkazy na původní model',
+    summaryLabel: 'Rychlé shrnutí',
+    explainLabel: 'Jednoduché vysvětlení',
+    flowDiagramLabel: 'Tok dat modelu',
+    filtersLabel: 'Filtry problémů',
+    projectionVisualLabel: 'Porovnání obvodů rovnoběžek',
+    footerLabel: 'Závěr stránky',
     changeLanguage: 'Změnit jazyk',
     changeTheme: 'Změnit barevný profil',
     nav: ['Přehled', 'Tok dat', 'Problémy', 'Mapa není svět', 'Zatmění', 'Slovník'],
@@ -258,12 +319,13 @@ const uiText = {
     sideBody: 'Konkrétní projekt AlanSpaceAudits/conceptual_flat_earth_model: jeho demo, zdrojový kód, výpočetní logika, vědecko astronomická tvrzení.',
     introEyebrow: 'Rozbor konkrétního FE modelu',
     heroTitle: 'Programový a logický audit modelu conceptual_flat_earth_model',
+    heroTitleMobile: 'Audit FE modelu',
     heroBody: 'Tato stránka je rozborem veřejného projektu <strong>Conceptual Flat Earth Model</strong>. Ukazuje, kde přesně model používá hotová astronomická data, kde je převádí do lokálně správné oblohy pro jednoho pozorovatele, kde je pak jen překresluje do FE scény, kde má ručně laděné konstanty a kde jeho tvrzení naráží na výpočetní nebo vědecký problém.',
     homeLink: 'superuserbase.com',
     liveDemo: 'Live demo původního modelu',
     sourceCode: 'Zdrojový kód na GitHubu',
-    openProblems: 'Otevřít problémy',
-    showFlow: 'Ukázat tok dat',
+    footerLine: 'Žádný dóm nebyl při tomto auditu fyzicky poškozen. Jen argumentace.',
+    footerMeta: 'Case closed.',
     summary: ['zaznamenaných problémů', 'kritických bodů', 'implementovaných FE predikcí zatmění'],
     summaryDetails: ['každý má důkaz v kódu', 'mění význam celého modelu', 'největší slib zůstal prázdný'],
     // TOHLE NENÍ DŮKAZ PLOCHÉ ZEMĚ. TOHLE JE DŮKAZ, ŽE BEZ VYPŮJČENÝCH DAT ZE STANDARDNÍ ASTRONOMIE TEN JEJICH ZÁZRAČNÝ "MODEL" NEFUNGUJE VŮBEC.
@@ -286,12 +348,15 @@ const uiText = {
     eclipseBody: 'Skutečný test modelu je předpověď. Tady jsou zatmění načtená z reálného katalogu AstroPixels/JPL DE405. FE predikční větev je v kódu jen placeholder.',
     modes: ['Katalog', 'FE prediktor'],
     glossaryEyebrow: 'Slovník',
-    glossaryTitle: 'Slova, která se na stránce opakují',
+    glossaryTitle: 'Klíčové pojmy auditu',
     glossary: [
       ['RA / Dec', 'Souřadnice na obloze. Něco jako zeměpisná délka a šířka, ale pro hvězdy, Slunce a Měsíc.'],
       ['Efemeridy', 'Tabulky, které říkají, kde bude nebeské těleso v určitém čase.'],
       ['DE405', 'Přesný astronomický zdroj dat od JPL. Když ho model použije, bere hotové odpovědi z moderní astronomie.'],
-      ['Projekce mapy', 'Způsob, jak nakreslit kulatý povrch na plochý papír. Každá projekce něco zkreslí.']
+      ['Projekce mapy', 'Způsob, jak nakreslit kulatý povrch na plochý papír. Každá projekce něco zkreslí.'],
+      ['Subsolární bod', 'Místo na Zemi přesně pod Sluncem. Tam je Slunce v zenitu (nad hlavou).'],
+      ['AE projekce', 'Severopolární azimutální ekvidistantní projekce. Kruhová mapa, kterou FE vydává za skutečný tvar světa.'],
+      ['Retrográdní pohyb', 'Občasná zpětná smyčka planety na obloze. FE model tohle nezvládá.']
     ],
     flowCards: ['Co tento krok dělá', 'Proč je to problém', 'Konkrétní příklad', 'Důkaz v kódu'],
     problemCards: ['Jednoduché vysvětlení', 'Proč je to problém', 'Závěr', 'Důkaz v kódu', 'Vizualizace problému'],
@@ -309,7 +374,21 @@ const uiText = {
   },
   en: {
     pageTitle: 'FE model audit',
+    documentTitle: 'FE Audit | conceptual_flat_earth_model audit',
     brandSubtitle: 'Detailed audit of calculations, code and claims in one specific model',
+    headerLabel: 'Navigation',
+    sectionsNavLabel: 'Page sections',
+    burgerOpenMenu: 'Open menu',
+    readingProgressLabel: 'Reading progress',
+    miniMapLabel: 'Section minimap',
+    backToTop: 'Back to top',
+    sourceLinksLabel: 'Links to the original model',
+    summaryLabel: 'Quick summary',
+    explainLabel: 'Simple explanation',
+    flowDiagramLabel: 'Model data flow',
+    filtersLabel: 'Problem filters',
+    projectionVisualLabel: 'Comparison of parallel circumferences',
+    footerLabel: 'Page ending',
     changeLanguage: 'Change language',
     changeTheme: 'Change color profile',
     nav: ['Overview', 'Data flow', 'Problems', 'A map is not the world', 'Eclipses', 'Glossary'],
@@ -317,16 +396,17 @@ const uiText = {
     sideBody: 'The specific project AlanSpaceAudits/conceptual_flat_earth_model: its demo, source code, computational logic, and scientific/astronomical claims.',
     introEyebrow: 'Audit of one specific FE model',
     heroTitle: 'Code and logic audit of conceptual_flat_earth_model',
+    heroTitleMobile: 'Code and logic audit of the FE model',
     heroBody: 'This page audits the public project <strong>Conceptual Flat Earth Model</strong>. It shows exactly where the model uses ready-made astronomical data, where it turns them into a locally correct sky for one observer, where it only redraws that result into an FE scene, where it relies on hand-tuned constants, and where its claims hit computational or scientific problems.',
     homeLink: 'superuserbase.com',
     liveDemo: 'Original model live demo',
     sourceCode: 'Source code on GitHub',
-    openProblems: 'Open problems',
-    showFlow: 'Show data flow',
+    footerLine: 'No dome was physically harmed during this audit. Only the argument.',
+    footerMeta: 'Case closed.',
     summary: ['documented problems', 'critical points', 'implemented FE eclipse predictions'],
     summaryDetails: ['each one has code evidence', 'they change the whole model', 'the biggest promise stayed empty'],
     explainTitle: 'Simple explanation of the main problem',
-    explainBody: 'The model looks convincing mainly because it does not predict the precise positions of the Sun, Moon and planets from a flat Earth. It takes ready-made astronomical coordinates from standard globe-based sources, turns them into a local sky for one specific observer, and only then draws them on a flat disk and dome. <strong class="hard-claim">That visualization can be interesting, but it does not prove that FE geometry works. It shows the opposite: there is not, and cannot be, a functional FE model here.</strong><br>What it actually does is much weaker than a real world-model: it borrows the difficult part from standard astronomy, solves the visible sky in a normal spherical framework, and only afterwards wraps that solved answer in FE artwork. The impressive part is therefore not an FE prediction. It is a presentation layer placed on top of imported results.<br><strong class="hard-claim">This is not an alternative description of reality. It is a conversion of ready-made spherical sky data into a different drawing, and it breaks down as soon as you ask it to represent one shared world for multiple observers at once.</strong><br>That is why the central claim fails: a model of reality must provide one coherent geometry that many observers can inhabit together. This one only generates locally persuasive scenes while leaning on a framework it claims to replace.<br>It is a weak attempt to confuse people who do not check the mechanism for themselves. The whole conceptual_flat_earth_model is therefore just a false lure for people who profit from it, such as <strong class="person-name">Dominik Mrvík</strong> in the Czech Republic and <strong class="person-name">Shane</strong> elsewhere.',
+    explainBody: 'The model only looks convincing because it does not compute the precise positions of the Sun, Moon and planets from a flat Earth at all. It takes ready-made astronomical coordinates from standard astronomy, converts them into a local sky for one specific observer, and only then redraws them onto a flat disk and dome. From the very beginning it stands on someone else’s correct result, not on its own FE geometry.<br><strong class="hard-claim">THIS IS NOT EVIDENCE FOR A FLAT EARTH. IT IS EVIDENCE THAT WITHOUT BORROWED RESULTS FROM STANDARD ASTRONOMY THIS MODEL CAN DO NOTHING AT ALL.</strong><br>The whole trick is that the hardest part of the work has already been done in advance by ordinary astronomy. Correct data, correct orientation and a locally correct-looking sky all arrive ready-made. The FE layer adds no new explanation of reality; it merely repackages someone else’s result into a different drawing and pretends that it discovered something.<br><strong class="hard-claim">IF THIS IS PRESENTED AS EVIDENCE FOR A FLAT EARTH, IT IS MANIPULATION OF READY-MADE DATA, NOT AN HONEST AND TRUTHFUL MODEL OF REALITY.</strong><br>But the moment you ask the model to do anything more than produce a locally impressive picture for one viewer, it falls apart immediately. A real model of reality must sustain one shared world for multiple observers at the same time, not a separate picture for each observer. No such consistent FE geometry exists here, which is why the model fails exactly when it is supposed to explain reality instead of merely creating an impression.<br><strong class="hard-claim">THIS IS NOT AN ALTERNATIVE COSMOLOGY OR ALTERNATIVE PHYSICS. IT IS A NON-FUNCTIONAL PSEUDO-MODEL THAT CANNOT SUSTAIN ONE CONSISTENT REALITY FOR MULTIPLE OBSERVERS AT ONCE.</strong><br><span class="block-justified">That is why it is no longer enough to speak only about a mistake, a weakness or an unfinished model. If someone takes other people’s correct data, redraws them into an FE scene and sells that as confirmation of a flat Earth, they create the false impression that FE actually explains something. It is not a discovery, not alternative science, and not even an honest dead end. It is a misleading construction that rests on other people’s results and presents them as its own triumph.</span><br><strong class="hard-claim">IN THE END THIS IS NOT A DISCOVERY OR A WORKING EXPLANATION OF THE WORLD, BUT A FRAUD-LIKE PRESENTATION OF OTHER PEOPLE’S RESULTS DISGUISED AS FE.</strong><br><span class="block-justified">The method is simple but effective: you take external, verified results, redraw them into a different scene, hide their dependence on the original model, and present the whole thing as your own proof. This is exactly how FE projects mislead people and then profit from it by selling mugs, caps, maps and other goods or services while standing on work done by someone else. If you wanted to demonstrate the exact meaning of the word FRAUD, this is what it would look like.</span> <strong class="hard-claim final-claim">FRAUD</strong><br><em class="explain-footnote block-justified">This entire “masquerade” is just a weak attempt to fool people who are unable or unwilling to verify reality for themselves. This “revolutionary” conceptual_flat_earth_model is in fact only a false lure on which various spreaders of this content make money, selling mugs, caps, maps or apps that in some cases even compromise private data such as home location, phone numbers or names. These people are frauds who built a business on deceiving others, including for example <strong class="person-name">Eric Dubay</strong>, <strong class="person-name">Mark Sargent</strong>, <strong class="person-name">David Weiss</strong>, <strong class="person-name">Nathan Thompson</strong>, <strong class="person-name">Austin Whitsitt</strong> or <strong class="person-name">Alan</strong>; and many others around the world, as well as in the Czech Republic for example <strong class="person-name">Dominik Mrvík</strong>, who merely takes foreign FE content, translates it into Czech and profits from it as well.</em>',
     flowEyebrow: 'Interactive audit',
     flowTitle: 'Where does the correct sky really come from?',
     flowBody: 'Click each step. Every block explains what the code does, why it matters, and which audit points connect to it.',
@@ -344,12 +424,15 @@ const uiText = {
     eclipseBody: 'The real test of a model is prediction. Here the eclipses are loaded from a real AstroPixels/JPL DE405 catalogue. The FE prediction branch in the code is only a placeholder.',
     modes: ['Catalogue', 'FE predictor'],
     glossaryEyebrow: 'Glossary',
-    glossaryTitle: 'Repeated terms on this page',
+    glossaryTitle: 'Key audit terms',
     glossary: [
       ['RA / Dec', 'Sky coordinates. Like longitude and latitude, but for stars, the Sun and the Moon.'],
       ['Ephemerides', 'Tables that say where a celestial body will be at a given time.'],
       ['DE405', 'A precise astronomical data source from JPL. When the model uses it, it imports answers from modern astronomy.'],
-      ['Map projection', 'A method for drawing a curved surface on flat paper. Every projection distorts something.']
+      ['Map projection', 'A method for drawing a curved surface on flat paper. Every projection distorts something.'],
+      ['Subsolar point', 'The spot on Earth directly below the Sun. The Sun is at zenith (overhead) there.'],
+      ['AE projection', 'North-pole azimuthal equidistant projection. The circular map the FE model presents as the actual shape of the world.'],
+      ['Retrograde motion', 'The occasional backward loop of a planet across the sky. The FE model does not handle it.']
     ],
     flowCards: ['What this step does', 'Why this is a problem', 'Concrete example', 'Evidence in code'],
     problemCards: ['Simple explanation', 'Why this is a problem', 'Conclusion', 'Evidence in code', 'Problem visualization'],
@@ -370,7 +453,21 @@ const uiText = {
 uiText.de = {
   ...uiText.en,
   pageTitle: 'FE-Modell-Audit',
+  documentTitle: 'FE-Audit | Audit von conceptual_flat_earth_model',
   brandSubtitle: 'Detaillierte Prüfung von Berechnungen, Code und Behauptungen eines konkreten Modells',
+  headerLabel: 'Navigation',
+  sectionsNavLabel: 'Seitenabschnitte',
+  burgerOpenMenu: 'Menü öffnen',
+  readingProgressLabel: 'Lesefortschritt',
+  miniMapLabel: 'Mini-Karte der Abschnitte',
+  backToTop: 'Nach oben',
+  sourceLinksLabel: 'Links zum Originalmodell',
+  summaryLabel: 'Kurzüberblick',
+  explainLabel: 'Einfache Erklärung',
+  flowDiagramLabel: 'Datenfluss des Modells',
+  filtersLabel: 'Problemfilter',
+  projectionVisualLabel: 'Vergleich der Umfänge von Breitenkreisen',
+  footerLabel: 'Seitenabschluss',
   changeLanguage: 'Sprache wechseln',
   changeTheme: 'Farbprofil wechseln',
   nav: ['Übersicht', 'Datenfluss', 'Probleme', 'Eine Karte ist nicht die Welt', 'Finsternisse', 'Glossar'],
@@ -378,16 +475,17 @@ uiText.de = {
   sideBody: 'Das konkrete Projekt AlanSpaceAudits/conceptual_flat_earth_model: Demo, Quellcode, Rechenlogik und wissenschaftlich-astronomische Behauptungen.',
   introEyebrow: 'Audit eines konkreten FE-Modells',
   heroTitle: 'Code- und Logik-Audit von conceptual_flat_earth_model',
+  heroTitleMobile: 'Code- und Logik-Audit des FE-Modells',
   heroBody: 'Diese Seite prüft das öffentliche Projekt <strong>Conceptual Flat Earth Model</strong>. Sie zeigt genau, wo das Modell fertige astronomische Daten nutzt, wo es sie in einen lokal richtigen Himmel für einen Beobachter umwandelt, wo es dieses Ergebnis nur in eine FE-Szene umzeichnet, wo handabgestimmte Konstanten stecken und wo seine Behauptungen auf rechnerische oder wissenschaftliche Probleme treffen.',
   homeLink: 'superuserbase.com',
   liveDemo: 'Live-Demo des Originalmodells',
   sourceCode: 'Quellcode auf GitHub',
-  openProblems: 'Probleme öffnen',
-  showFlow: 'Datenfluss zeigen',
+  footerLine: 'Bei diesem Audit wurde keine Kuppel physisch beschädigt. Nur das Argument.',
+  footerMeta: 'Fall abgeschlossen.',
   summary: ['dokumentierte Probleme', 'kritische Punkte', 'implementierte FE-Finsternisvorhersagen'],
   summaryDetails: ['jeder Punkt hat Codebelege', 'sie verändern das ganze Modell', 'das größte Versprechen blieb leer'],
   explainTitle: 'Einfache Erklärung des Hauptproblems',
-  explainBody: 'Das Modell wirkt vor allem deshalb überzeugend, weil es die genauen Positionen von Sonne, Mond und Planeten nicht aus einer flachen Erde vorhersagt. Es nimmt fertige astronomische Koordinaten aus normalen, kugelbasierten Quellen, wandelt sie in einen lokalen Himmel für einen konkreten Beobachter um und zeichnet sie erst danach auf eine flache Scheibe und einen Dom. <strong class="hard-claim">Diese Visualisierung kann interessant sein, beweist aber nicht, dass FE-Geometrie funktioniert. Sie zeigt das Gegenteil: Hier gibt es kein funktionsfähiges FE-Modell und es kann keines geben.</strong><br><strong class="hard-claim">Das ist keine alternative Beschreibung der Realität. Es ist die Umwandlung fertiger sphärischer Himmelsdaten in eine andere Zeichnung, die zusammenbricht, sobald sie eine gemeinsame Welt für mehrere Beobachter zugleich darstellen soll.</strong><br>Es ist ein schwacher Versuch, Menschen zu verwirren, die den Mechanismus nicht selbst prüfen. Das gesamte conceptual_flat_earth_model ist deshalb nur ein falscher Köder für Menschen, die davon profitieren, wie in der Tschechischen Republik <strong class="person-name">Dominik Mrvík</strong> und anderswo zum Beispiel <strong class="person-name">Shane</strong>.',
+  explainBody: 'Das Modell wirkt nur deshalb überzeugend, weil es die genauen Positionen von Sonne, Mond und Planeten überhaupt nicht aus einer flachen Erde berechnet. Es nimmt fertige astronomische Koordinaten aus der Standardastronomie, wandelt sie in einen lokalen Himmel für einen konkreten Beobachter um und zeichnet sie erst danach auf eine flache Scheibe und einen Dom. Von Anfang an steht es also auf dem korrekten Ergebnis anderer, nicht auf eigener FE-Geometrie.<br><strong class="hard-claim">DAS IST KEIN BEWEIS FÜR EINE FLACHE ERDE. ES IST DER BEWEIS, DASS DAS MODELL OHNE GELIEHENE ERGEBNISSE DER STANDARDASTRONOMIE ÜBERHAUPT NICHTS KANN.</strong><br>Der ganze Trick besteht darin, dass der schwierigste Teil der Arbeit bereits im Voraus von der gewöhnlichen Astronomie erledigt wird. Korrekte Daten, korrekte Orientierung und ein lokal richtig wirkender Himmel kommen fertig an. Die FE-Schicht liefert keine neue Erklärung der Realität, sondern verpackt nur fremde Ergebnisse in eine andere Zeichnung und tut so, als hätte sie etwas entdeckt.<br><strong class="hard-claim">WENN DAS ALS BEWEIS FÜR EINE FLACHE ERDE AUSGEGEBEN WIRD, IST ES DIE MANIPULATION FERTIGER DATEN UND KEIN EHRLICHES UND WAHRHEITSGETREUES MODELL DER REALITÄT.</strong><br>Sobald man von dem Modell jedoch mehr verlangt als ein lokal beeindruckendes Bild für einen einzelnen Betrachter, zerfällt alles sofort. Ein echtes Modell der Realität muss eine gemeinsame Welt für mehrere gleichzeitige Beobachter tragen, nicht für jeden ein separates Bild. Eine solche konsistente FE-Geometrie existiert hier nicht, und genau deshalb versagt das Modell in dem Moment, in dem es Realität erklären statt nur Eindruck erzeugen soll.<br><strong class="hard-claim">DAS IST WEDER EINE ALTERNATIVE KOSMOLOGIE NOCH EINE ALTERNATIVE PHYSIK. ES IST EIN NICHT FUNKTIONSFÄHIGES PSEUDO-MODELL, DAS KEINE EINZIGE KONSISTENTE REALITÄT FÜR MEHRERE BEOBACHTER GLEICHZEITIG TRAGEN KANN.</strong><br><span class="block-justified">Deshalb reicht es nicht mehr, nur von einem Irrtum, einer Schwäche oder einem unfertigen Modell zu sprechen. Wenn jemand fremde korrekte Daten nimmt, sie in eine FE-Szene umzeichnet und das als Bestätigung der flachen Erde verkauft, entsteht der falsche Eindruck, FE erkläre tatsächlich etwas. Das ist weder eine Entdeckung noch alternative Wissenschaft und nicht einmal eine ehrliche Sackgasse. Es ist eine irreführende Konstruktion, die sich auf fremde Ergebnisse stützt und sie als eigenen Triumph ausgibt.</span><br><strong class="hard-claim">IM ERGEBNIS HANDELT ES SICH ALSO WEDER UM EINE ENTDECKUNG NOCH UM EINE FUNKTIONIERENDE ERKLÄRUNG DER WELT, SONDERN UM EINE BETRÜGERISCH WIRKENDE PRÄSENTATION FREMDER ERGEBNISSE IM FE-KOSTÜM.</strong><br><span class="block-justified">Die Methode ist einfach, aber wirksam: Man nimmt fremde, überprüfte Ergebnisse, zeichnet sie in eine andere Szene um, verbirgt ihre Abhängigkeit vom ursprünglichen Modell und präsentiert das Ganze als eigenen Beweis. Genau so täuschen FE-Projekte Menschen und verdienen anschließend damit Geld, indem sie Tassen, Kappen, Karten und andere Dinge oder Dienste verkaufen, obwohl sie auf der Arbeit anderer beruhen. Wenn man jemandem die genaue Bedeutung des Wortes BETRUG zeigen wollte, dann genau auf diese Weise.</span> <strong class="hard-claim final-claim">BETRUG</strong><br><em class="explain-footnote block-justified">Diese ganze „Maskerade“ ist nur ein schwacher Versuch, Menschen zu täuschen, die die Realität nicht selbst überprüfen können oder wollen. Dieses „revolutionäre“ conceptual_flat_earth_model ist in Wahrheit nur ein falscher Köder, mit dem verschiedene Verbreiter solcher Inhalte Geld verdienen, indem sie Tassen, Kappen, Karten oder Apps verkaufen, die in manchen Fällen sogar private Daten wie Wohnort, Telefonnummern oder Namen kompromittieren. Diese Leute sind Betrüger, die ein Geschäft auf dem Täuschen anderer aufgebaut haben, darunter etwa <strong class="person-name">Eric Dubay</strong>, <strong class="person-name">Mark Sargent</strong>, <strong class="person-name">David Weiss</strong>, <strong class="person-name">Nathan Thompson</strong>, <strong class="person-name">Austin Whitsitt</strong> oder <strong class="person-name">Alan</strong>; dazu viele weitere auf der ganzen Welt und in Tschechien zum Beispiel <strong class="person-name">Dominik Mrvík</strong>, der ausländische FE-Inhalte lediglich übernimmt, ins Tschechische übersetzt und ebenfalls daran verdient.</em>',
   flowEyebrow: 'Interaktiver Audit',
   flowTitle: 'Woher kommt der richtige Himmel wirklich?',
   flowBody: 'Klicke auf die einzelnen Schritte. Jeder Block erklärt, was der Code tut, warum es wichtig ist und welche Auditpunkte damit zusammenhängen.',
@@ -405,12 +503,15 @@ uiText.de = {
   eclipseBody: 'Der echte Test eines Modells ist Vorhersage. Hier werden Finsternisse aus einem realen AstroPixels/JPL-DE405-Katalog geladen. Der FE-Vorhersagezweig im Code ist nur ein Platzhalter.',
   modes: ['Katalog', 'FE-Prädiktor'],
   glossaryEyebrow: 'Glossar',
-  glossaryTitle: 'Begriffe, die hier wiederkehren',
+  glossaryTitle: 'Wichtige Audit-Begriffe',
   glossary: [
     ['RA / Dec', 'Himmelskoordinaten. Wie Länge und Breite, aber für Sterne, Sonne und Mond.'],
     ['Ephemeriden', 'Tabellen, die sagen, wo ein Himmelskörper zu einer bestimmten Zeit steht.'],
     ['DE405', 'Eine präzise astronomische Datenquelle von JPL. Nutzt das Modell sie, importiert es Antworten aus moderner Astronomie.'],
-    ['Kartenprojektion', 'Eine Methode, eine gekrümmte Oberfläche auf flaches Papier zu zeichnen. Jede Projektion verzerrt etwas.']
+    ['Kartenprojektion', 'Eine Methode, eine gekrümmte Oberfläche auf flaches Papier zu zeichnen. Jede Projektion verzerrt etwas.'],
+    ['Subsolarer Punkt', 'Der Ort auf der Erde direkt unter der Sonne. Dort steht die Sonne im Zenit.'],
+    ['AE-Projektion', 'Nordpol-azimutalgleichabständige Projektion. Die Kreiskarte, die FE als tatsächliche Form der Welt ausgibt.'],
+    ['Rückläufige Bewegung', 'Die gelegentliche Rückwärtsschleife eines Planeten am Himmel. Das FE-Modell beherrscht das nicht.']
   ],
   flowCards: ['Was dieser Schritt tut', 'Warum das ein Problem ist', 'Konkretes Beispiel', 'Nachweis im Code'],
   problemCards: ['Einfache Erklärung', 'Warum das ein Problem ist', 'Fazit', 'Nachweis im Code', 'Problemvisualisierung'],
@@ -430,7 +531,21 @@ uiText.de = {
 uiText.es = {
   ...uiText.en,
   pageTitle: 'auditoría del modelo FE',
+  documentTitle: 'FE Audit | auditoría de conceptual_flat_earth_model',
   brandSubtitle: 'Auditoría detallada de cálculos, código y afirmaciones de un modelo concreto',
+  headerLabel: 'Navegación',
+  sectionsNavLabel: 'Secciones de la página',
+  burgerOpenMenu: 'Abrir menú',
+  readingProgressLabel: 'Progreso de lectura',
+  miniMapLabel: 'Minimapa de secciones',
+  backToTop: 'Volver arriba',
+  sourceLinksLabel: 'Enlaces al modelo original',
+  summaryLabel: 'Resumen rápido',
+  explainLabel: 'Explicación simple',
+  flowDiagramLabel: 'Flujo de datos del modelo',
+  filtersLabel: 'Filtros de problemas',
+  projectionVisualLabel: 'Comparación de circunferencias de paralelos',
+  footerLabel: 'Cierre de la página',
   changeLanguage: 'Cambiar idioma',
   changeTheme: 'Cambiar perfil de color',
   nav: ['Resumen', 'Flujo de datos', 'Problemas', 'Un mapa no es el mundo', 'Eclipses', 'Glosario'],
@@ -438,16 +553,17 @@ uiText.es = {
   sideBody: 'El proyecto concreto AlanSpaceAudits/conceptual_flat_earth_model: su demo, código fuente, lógica de cálculo y afirmaciones científicas y astronómicas.',
   introEyebrow: 'Auditoría de un modelo FE concreto',
   heroTitle: 'Auditoría de código y lógica de conceptual_flat_earth_model',
+  heroTitleMobile: 'Auditoría del código y la lógica del modelo FE',
   heroBody: 'Esta página audita el proyecto público <strong>Conceptual Flat Earth Model</strong>. Muestra exactamente dónde el modelo usa datos astronómicos ya preparados, dónde los convierte en un cielo local correcto para un observador, dónde solo redibuja ese resultado en una escena FE, dónde depende de constantes ajustadas a mano y dónde sus afirmaciones chocan con problemas computacionales o científicos.',
   homeLink: 'superuserbase.com',
   liveDemo: 'Demo original en vivo',
   sourceCode: 'Código fuente en GitHub',
-  openProblems: 'Abrir problemas',
-  showFlow: 'Mostrar flujo de datos',
+  footerLine: 'Ningún domo fue dañado físicamente durante esta auditoría. Solo el argumento.',
+  footerMeta: 'Caso cerrado.',
   summary: ['problemas documentados', 'puntos críticos', 'predicciones FE de eclipses implementadas'],
   summaryDetails: ['cada uno tiene evidencia en código', 'cambian todo el modelo', 'la mayor promesa quedó vacía'],
   explainTitle: 'Explicación simple del problema principal',
-  explainBody: 'El modelo parece convincente principalmente porque no predice las posiciones exactas del Sol, la Luna y los planetas desde una Tierra plana. Toma coordenadas astronómicas ya hechas de fuentes estándar basadas en el globo, las convierte en un cielo local para un observador concreto y solo después las dibuja sobre un disco plano y una cúpula. <strong class="hard-claim">Esa visualización puede ser interesante, pero no demuestra que la geometría FE funcione. Demuestra lo contrario: aquí no existe, ni puede existir, un modelo FE funcional.</strong><br><strong class="hard-claim">Esto no es una descripción alternativa de la realidad. Es una conversión de datos esféricos ya resueltos a otro dibujo, y se derrumba en cuanto se le exige representar un solo mundo compartido por varios observadores al mismo tiempo.</strong><br>Es un intento débil de confundir a personas que no comprueban el mecanismo por sí mismas. Todo conceptual_flat_earth_model es por tanto un falso señuelo para personas que se benefician de ello, como <strong class="person-name">Dominik Mrvík</strong> en la República Checa y, en otros lugares, por ejemplo <strong class="person-name">Shane</strong>.',
+  explainBody: 'El modelo solo parece convincente porque en realidad no calcula las posiciones precisas del Sol, la Luna y los planetas desde una Tierra plana. Toma coordenadas astronómicas ya hechas de la astronomía estándar, las convierte en un cielo local para un observador concreto y solo después las redibuja sobre un disco plano y una cúpula. Desde el principio se apoya en el resultado correcto de otros, no en su propia geometría FE.<br><strong class="hard-claim">ESTO NO ES PRUEBA DE UNA TIERRA PLANA. ES LA PRUEBA DE QUE SIN RESULTADOS PRESTADOS DE LA ASTRONOMÍA ESTÁNDAR ESTE MODELO NO SABE HACER ABSOLUTAMENTE NADA.</strong><br>Todo el truco consiste en que la parte más difícil del trabajo ya la hizo antes la astronomía normal. Los datos correctos, la orientación correcta y un cielo local que parece correcto llegan ya preparados. La capa FE no aporta una nueva explicación de la realidad; solo reempaqueta el resultado ajeno en otro dibujo y finge que ha descubierto algo.<br><strong class="hard-claim">SI ESTO SE PRESENTA COMO PRUEBA DE UNA TIERRA PLANA, ES MANIPULACIÓN DE DATOS YA RESUELTOS, NO UN MODELO HONESTO Y VERDADERO DE LA REALIDAD.</strong><br>Pero en cuanto se le pide al modelo algo más que una imagen localmente impresionante para un solo espectador, todo se derrumba de inmediato. Un modelo real de la realidad debe sostener un único mundo compartido por varios observadores al mismo tiempo, no una imagen separada para cada uno. Aquí no existe ninguna geometría FE coherente de ese tipo, y por eso el modelo falla exactamente en el momento en que debería explicar la realidad en lugar de limitarse a impresionar.<br><strong class="hard-claim">ESTO NO ES COSMOLOGÍA ALTERNATIVA NI FÍSICA ALTERNATIVA. ES UN PSEUDOMODELO NO FUNCIONAL QUE NO PUEDE SOSTENER UNA SOLA REALIDAD CONSISTENTE PARA MÚLTIPLES OBSERVADORES A LA VEZ.</strong><br><span class="block-justified">Por eso ya no basta con hablar solo de un error, una debilidad o un modelo inacabado. Si alguien toma datos correctos de otros, los redibuja en una escena FE y los vende como confirmación de una Tierra plana, crea la falsa impresión de que FE realmente explica algo. No es un descubrimiento, no es ciencia alternativa y ni siquiera es un callejón sin salida honesto. Es una construcción engañosa que se apoya en resultados ajenos y los presenta como si fueran su propio triunfo.</span><br><strong class="hard-claim">AL FINAL, POR TANTO, NO SE TRATA DE UN DESCUBRIMIENTO NI DE UNA EXPLICACIÓN FUNCIONAL DEL MUNDO, SINO DE UNA PRESENTACIÓN DE RESULTADOS AJENOS DISFRAZADA DE FE Y CON APARIENCIA DE FRAUDE.</strong><br><span class="block-justified">El método es simple, pero eficaz: tomas resultados externos y verificados, los redibujas en otra escena, ocultas su dependencia del modelo original y presentas todo como si fuera tu propia prueba. Así es exactamente como los proyectos FE engañan a la gente y luego ganan dinero vendiendo tazas, gorras, mapas y otros productos o servicios, aunque en realidad se apoyen en el trabajo de otra persona. Si quisieras mostrar a alguien el significado exacto de la palabra FRAUDE, sería precisamente de esta manera.</span> <strong class="hard-claim final-claim">FRAUDE</strong><br><em class="explain-footnote block-justified">Toda esta “mascarada” no es más que un intento débil de engañar a personas que no pueden o no quieren verificar la realidad por sí mismas. Este “revolucionario” conceptual_flat_earth_model es en realidad solo un señuelo falso con el que varios difusores de este contenido ganan dinero vendiendo tazas, gorras, mapas o aplicaciones que en algunos casos incluso comprometen datos privados como la ubicación del hogar, números de teléfono o nombres. Estas personas son estafadores que construyeron un negocio sobre engañar a otros, entre ellos por ejemplo <strong class="person-name">Eric Dubay</strong>, <strong class="person-name">Mark Sargent</strong>, <strong class="person-name">David Weiss</strong>, <strong class="person-name">Nathan Thompson</strong>, <strong class="person-name">Austin Whitsitt</strong> o <strong class="person-name">Alan</strong>; además de muchos otros en todo el mundo y, en la República Checa, por ejemplo <strong class="person-name">Dominik Mrvík</strong>, que simplemente toma contenido FE extranjero, lo traduce al checo y también obtiene beneficio de ello.</em>',
   flowEyebrow: 'Auditoría interactiva',
   flowTitle: '¿De dónde sale realmente el cielo correcto?',
   flowBody: 'Haz clic en cada paso. Cada bloque explica qué hace el código, por qué importa y qué puntos de auditoría se relacionan con él.',
@@ -465,12 +581,15 @@ uiText.es = {
   eclipseBody: 'La verdadera prueba de un modelo es la predicción. Aquí los eclipses se cargan desde un catálogo real AstroPixels/JPL DE405. La rama predictiva FE del código es solo un marcador de posición.',
   modes: ['Catálogo', 'Predictor FE'],
   glossaryEyebrow: 'Glosario',
-  glossaryTitle: 'Términos repetidos en esta página',
+  glossaryTitle: 'Términos clave de la auditoría',
   glossary: [
     ['RA / Dec', 'Coordenadas del cielo. Parecidas a longitud y latitud, pero para estrellas, el Sol y la Luna.'],
     ['Efemérides', 'Tablas que indican dónde estará un cuerpo celeste en un momento dado.'],
     ['DE405', 'Una fuente precisa de datos astronómicos de JPL. Si el modelo la usa, importa respuestas de la astronomía moderna.'],
-    ['Proyección de mapa', 'Método para dibujar una superficie curva en papel plano. Toda proyección distorsiona algo.']
+    ['Proyección de mapa', 'Método para dibujar una superficie curva en papel plano. Toda proyección distorsiona algo.'],
+    ['Punto subsolar', 'El lugar de la Tierra justo bajo el Sol. Allí el Sol está en el cénit.'],
+    ['Proyección AE', 'Proyección acimutal equidistante polar norte. El mapa circular que el FE presenta como la forma real del mundo.'],
+    ['Movimiento retrógrado', 'Bucle hacia atrás ocasional de un planeta en el cielo. El modelo FE no lo maneja.']
   ],
   flowCards: ['Qué hace este paso', 'Por qué es un problema', 'Ejemplo concreto', 'Evidencia en el código'],
   problemCards: ['Explicación simple', 'Por qué es un problema', 'Conclusión', 'Evidencia en el código', 'Visualización del problema'],
@@ -490,7 +609,21 @@ uiText.es = {
 uiText.ru = {
   ...uiText.en,
   pageTitle: 'аудит FE-модели',
+  documentTitle: 'FE Audit | аудит conceptual_flat_earth_model',
   brandSubtitle: 'Подробный аудит вычислений, кода и заявлений конкретной модели',
+  headerLabel: 'Навигация',
+  sectionsNavLabel: 'Разделы страницы',
+  burgerOpenMenu: 'Открыть меню',
+  readingProgressLabel: 'Ход чтения',
+  miniMapLabel: 'Мини-карта разделов',
+  backToTop: 'Наверх',
+  sourceLinksLabel: 'Ссылки на исходную модель',
+  summaryLabel: 'Краткое резюме',
+  explainLabel: 'Простое объяснение',
+  flowDiagramLabel: 'Поток данных модели',
+  filtersLabel: 'Фильтры проблем',
+  projectionVisualLabel: 'Сравнение длин параллелей',
+  footerLabel: 'Завершение страницы',
   changeLanguage: 'Сменить язык',
   changeTheme: 'Сменить цветовой профиль',
   nav: ['Обзор', 'Поток данных', 'Проблемы', 'Карта не является миром', 'Затмения', 'Словарь'],
@@ -498,16 +631,17 @@ uiText.ru = {
   sideBody: 'Конкретный проект AlanSpaceAudits/conceptual_flat_earth_model: демо, исходный код, вычислительная логика и научно-астрономические заявления.',
   introEyebrow: 'Аудит конкретной FE-модели',
   heroTitle: 'Аудит кода и логики conceptual_flat_earth_model',
+  heroTitleMobile: 'Аудит кода и логики FE-модели',
   heroBody: 'Эта страница разбирает публичный проект <strong>Conceptual Flat Earth Model</strong>. Она показывает, где именно модель использует готовые астрономические данные, где превращает их в локально правильное небо для одного наблюдателя, где лишь перерисовывает этот результат в FE-сцену, где опирается на вручную подобранные константы и где ее заявления сталкиваются с вычислительными или научными проблемами.',
   homeLink: 'superuserbase.com',
   liveDemo: 'Оригинальная live-демонстрация',
   sourceCode: 'Исходный код на GitHub',
-  openProblems: 'Открыть проблемы',
-  showFlow: 'Показать поток данных',
+  footerLine: 'Во время этого аудита ни один купол физически не пострадал. Только аргументация.',
+  footerMeta: 'Дело закрыто.',
   summary: ['задокументированных проблем', 'критических пунктов', 'реализованных FE-прогнозов затмений'],
   summaryDetails: ['у каждого есть доказательство в коде', 'они меняют смысл всей модели', 'главное обещание осталось пустым'],
   explainTitle: 'Простое объяснение главной проблемы',
-  explainBody: 'Модель выглядит убедительно главным образом потому, что не предсказывает точные положения Солнца, Луны и планет из плоской Земли. Она берет готовые астрономические координаты из стандартных источников сферической астрономии, превращает их в локальное небо для конкретного наблюдателя и только потом рисует их на плоском диске и куполе. <strong class="hard-claim">Такая визуализация может быть интересной, но она не доказывает, что FE-геометрия работает. Она показывает обратное: здесь нет и не может быть рабочей FE-модели.</strong><br><strong class="hard-claim">Это не альтернативное описание реальности. Это перевод уже готовых сферических данных о небе в другой рисунок, и он распадается, как только от него требуют представить один общий мир сразу для нескольких наблюдателей.</strong><br>Это слабая попытка запутать людей, которые не проверяют механизм самостоятельно. Весь conceptual_flat_earth_model поэтому является лишь ложной приманкой для людей, которые на этом зарабатывают, например <strong class="person-name">Dominik Mrvík</strong> в Чехии и <strong class="person-name">Shane</strong> в других местах.',
+  explainBody: 'Модель выглядит убедительно только потому, что вообще не вычисляет точные положения Солнца, Луны и планет из плоской Земли. Она берет готовые астрономические координаты из стандартной астрономии, превращает их в локальное небо для конкретного наблюдателя и лишь затем перерисовывает их на плоский диск и купол. С самого начала она опирается на правильный результат других, а не на собственную FE-геометрию.<br><strong class="hard-claim">ЭТО НЕ ДОКАЗАТЕЛЬСТВО ПЛОСКОЙ ЗЕМЛИ. ЭТО ДОКАЗАТЕЛЬСТВО ТОГО, ЧТО БЕЗ ЗАИМСТВОВАННЫХ РЕЗУЛЬТАТОВ СТАНДАРТНОЙ АСТРОНОМИИ ЭТА МОДЕЛЬ НЕ УМЕЕТ ВООБЩЕ НИЧЕГО.</strong><br>Весь трюк в том, что самую трудную часть работы заранее выполняет обычная астрономия. Правильные данные, правильная ориентация и локально правильное небо приходят уже готовыми. FE-слой не дает нового объяснения реальности; он лишь перепаковывает чужой результат в другой рисунок и делает вид, будто что-то открыл.<br><strong class="hard-claim">ЕСЛИ ЭТО ВЫДАЕТСЯ ЗА ДОКАЗАТЕЛЬСТВО ПЛОСКОЙ ЗЕМЛИ, ТО ЭТО МАНИПУЛЯЦИЯ ГОТОВЫМИ ДАННЫМИ, А НЕ ЧЕСТНАЯ И ПРАВДИВАЯ МОДЕЛЬ РЕАЛЬНОСТИ.</strong><br>Но как только от модели требуется нечто большее, чем локально впечатляющая картинка для одного зрителя, все немедленно распадается. Настоящая модель реальности должна удерживать один общий мир для нескольких наблюдателей одновременно, а не отдельную картинку для каждого. Никакой такой согласованной FE-геометрии здесь не существует, и именно поэтому модель проваливается в тот момент, когда должна объяснять реальность, а не просто производить впечатление.<br><strong class="hard-claim">ЭТО НЕ АЛЬТЕРНАТИВНАЯ КОСМОЛОГИЯ И НЕ АЛЬТЕРНАТИВНАЯ ФИЗИКА. ЭТО НЕРАБОТАЮЩАЯ ПСЕВДОМОДЕЛЬ, КОТОРАЯ НЕ СПОСОБНА УДЕРЖАТЬ ОДНУ СОГЛАСОВАННУЮ РЕАЛЬНОСТЬ ДЛЯ НЕСКОЛЬКИХ НАБЛЮДАТЕЛЕЙ ОДНОВРЕМЕННО.</strong><br><span class="block-justified">Именно поэтому уже недостаточно говорить лишь об ошибке, слабости или недоделанной модели. Если кто-то берет чужие правильные данные, перерисовывает их в FE-сцену и продает это как подтверждение плоской Земли, он создает ложное впечатление, будто FE действительно что-то объясняет. Это не открытие, не альтернативная наука и даже не честный тупик. Это вводящая в заблуждение конструкция, которая опирается на чужие результаты и выдает их за собственный триумф.</span><br><strong class="hard-claim">В ИТОГЕ ЭТО НЕ ОТКРЫТИЕ И НЕ РАБОЧЕЕ ОБЪЯСНЕНИЕ МИРА, А МОШЕННИЧЕСКИ ВЫГЛЯДЯЩАЯ ПРЕЗЕНТАЦИЯ ЧУЖИХ РЕЗУЛЬТАТОВ В FE-МАСКИРОВКЕ.</strong><br><span class="block-justified">Метод прост, но эффективен: берутся внешние, проверенные результаты, перерисовываются в другую сцену, скрывается их зависимость от исходной модели, и все это выдается за собственное доказательство. Именно так FE-проекты вводят людей в заблуждение, а затем зарабатывают на этом, продавая кружки, кепки, карты и другие товары или услуги, хотя на деле они стоят на работе кого-то другого. Если бы вы захотели показать кому-то точный смысл слова МОШЕННИЧЕСТВО, это выглядело бы именно так.</span> <strong class="hard-claim final-claim">МОШЕННИЧЕСТВО</strong><br><em class="explain-footnote block-justified">Вся эта «маскарадная постановка» — всего лишь слабая попытка одурачить людей, которые не могут или не хотят сами проверять реальность. Этот «революционный» conceptual_flat_earth_model на деле является лишь ложной приманкой, на которой разные распространители такого контента зарабатывают деньги, продавая кружки, кепки, карты или приложения, которые в некоторых случаях даже компрометируют личные данные, например местоположение дома, номера телефонов или имена. Эти люди — мошенники, построившие бизнес на обмане других; среди них, например, <strong class="person-name">Eric Dubay</strong>, <strong class="person-name">Mark Sargent</strong>, <strong class="person-name">David Weiss</strong>, <strong class="person-name">Nathan Thompson</strong>, <strong class="person-name">Austin Whitsitt</strong> или <strong class="person-name">Alan</strong>; а также многие другие по всему миру и, например, в Чехии <strong class="person-name">Dominik Mrvík</strong>, который просто берет зарубежный FE-контент, переводит его на чешский и тоже извлекает из этого прибыль.</em>',
   flowEyebrow: 'Интерактивный аудит',
   flowTitle: 'Откуда на самом деле берется правильное небо?',
   flowBody: 'Нажимайте на шаги. Каждый блок объясняет, что делает код, почему это важно и какие пункты аудита с этим связаны.',
@@ -525,12 +659,15 @@ uiText.ru = {
   eclipseBody: 'Настоящий тест модели - прогноз. Здесь затмения загружаются из реального каталога AstroPixels/JPL DE405. FE-ветка прогнозирования в коде является только заглушкой.',
   modes: ['Каталог', 'FE-прогноз'],
   glossaryEyebrow: 'Словарь',
-  glossaryTitle: 'Термины, которые повторяются на странице',
+  glossaryTitle: 'Ключевые термины аудита',
   glossary: [
     ['RA / Dec', 'Координаты на небе. Похожи на долготу и широту, но для звезд, Солнца и Луны.'],
     ['Эфемериды', 'Таблицы, показывающие, где будет небесное тело в определенное время.'],
     ['DE405', 'Точный астрономический источник данных JPL. Когда модель его использует, она импортирует ответы современной астрономии.'],
-    ['Картографическая проекция', 'Способ нарисовать искривленную поверхность на плоской бумаге. Любая проекция что-то искажает.']
+    ['Картографическая проекция', 'Способ нарисовать искривленную поверхность на плоской бумаге. Любая проекция что-то искажает.'],
+    ['Подсолнечная точка', 'Место на Земле прямо под Солнцем. Там Солнце в зените (над головой).'],
+    ['АЕ-проекция', 'Северополярная азимутальная равноотстоящая проекция. Круглая карта, которую FE выдает за реальную форму мира.'],
+    ['Ретроградное движение', 'Иногда планета описывает на небе обратную петлю. FE-модель этого не умеет.']
   ],
   flowCards: ['Что делает этот шаг', 'Почему это проблема', 'Конкретный пример', 'Доказательство в коде'],
   problemCards: ['Простое объяснение', 'Почему это проблема', 'Вывод', 'Доказательство в коде', 'Визуализация проблемы'],
@@ -552,7 +689,7 @@ const problemTranslations = {
   en: [
     ['The model only works as a picture for one observer', 'The code can produce a locally correct-looking sky for a chosen viewer, but that is not yet a model of reality shared by multiple observers at the same time.', 'Once the sky is obtained through the standard RA/Dec to local-sky transform, the FE scene only redraws an already computed result. It does not provide one coherent FE world that carries many observers together.', 'Two observers, two locally correct pictures, but no shared FE geometry carrying both at once.', 'This is not an alternative description of reality. It is a local visualization transform of an already solved sky.'],
     ['The model uses ready-made DE405 ephemerides', 'The model claims to show a working FE sky, but it takes precise positions from ready-made astronomical tables.', 'The default position source is AstroPixels/JPL DE405. Sky accuracy therefore comes from modern astronomical tables, not from the model’s flat geometry.', 'Data flow DE405 -> RA/Dec -> local sky -> FE drawing.', 'Correct body positions are not evidence for an FE model because they were imported from another source.'],
-    ['The observed sky is computed through a globe transform', 'The model says “flat world”, but for observed altitude and direction it uses a standard local sky computed from RA/Dec.', 'Azimuth and elevation are the main observed values. The code obtains them from RA/Dec, latitude, longitude and sidereal time before FE drawing begins.', 'Observer, local sky above, disk only after that.', 'The FE scene is not the source of observations. It is an image after a standard sky calculation.'],
+    ['The observed sky is computed through a globe transform', 'The model says “flat world”, but for observed altitude and direction it uses a standard local sky computed from RA/Dec.', 'Azimuth and elevation are the main observed values. The code obtains them from RA/Dec, latitude, longitude and sidereal time before FE drawing begins.', 'Left: observed altitude and direction are produced. Right: the FE disk receives that finished direction, but it does not match its own geometry.', 'The FE scene is not the source of observations. It is an image after a standard sky calculation.'],
     ['The lat/long grid is hard-coded as an AE map projection', 'The FE disk is a map projection. A projection can be a useful picture, but it is not automatically the physical shape of the world.', 'An azimuthal equidistant projection is a way to draw a map. Toward the south it heavily changes parallel sizes and distances.', 'Comparison of a parallel circumference on a sphere and in the FE disk.', 'The model confuses a map projection with physical world geometry.'],
     ['Body heights are hand-tuned bands', 'The height of the Sun, Moon and planets above the dome is derived from a chosen band, not from independent light physics.', 'The heights are derived from declination and hand-picked constants HEADROOM and SUN_RANGE.', 'A declination slider moving a body up and down without physical distance.', 'This is image tuning, not an independent physical mechanism.'],
     ['Eclipses are replayed from a real catalogue', 'Eclipses are not found by an FE predictor. They are loaded from a real catalogue and replayed.', 'Eclipse demos are built from the AstroPixels/JPL DE405 catalogue. The FE prediction branch is only a placeholder.', 'Eclipse catalogue versus empty FE predictor.', 'Replaying known eclipses is not a flat-model prediction.'],
@@ -566,7 +703,7 @@ const problemTranslations = {
   de: [
     ['Das Modell funktioniert nur als Bild für einen Beobachter', 'Der Code kann für einen gewählten Betrachter einen lokal richtig wirkenden Himmel erzeugen, aber das ist noch kein Modell einer Realität, die mehrere Beobachter gleichzeitig teilen.', 'Sobald der Himmel über die Standard-Transformation von RA/Dec in den lokalen Himmel gewonnen wird, zeichnet die FE-Szene nur ein bereits berechnetes Ergebnis nach. Sie liefert keine gemeinsame FE-Welt, die mehrere Beobachter zugleich trägt.', 'Zwei Beobachter, zwei lokal richtige Bilder, aber keine gemeinsame FE-Geometrie für beide zugleich.', 'Das ist keine alternative Beschreibung der Realität. Es ist nur eine lokale Visualisierung eines bereits gelösten Himmels.'],
     ['Das Modell verwendet fertige DE405-Ephemeriden', 'Das Modell behauptet, einen funktionierenden FE-Himmel zu zeigen, übernimmt genaue Positionen aber aus fertigen astronomischen Tabellen.', 'Die Standardquelle ist AstroPixels/JPL DE405. Die Himmelsgenauigkeit kommt also aus modernen astronomischen Tabellen, nicht aus flacher Modellgeometrie.', 'Datenfluss DE405 -> RA/Dec -> lokaler Himmel -> FE-Zeichnung.', 'Korrekte Körperpositionen sind kein Beweis für ein FE-Modell, weil sie aus einer anderen Quelle importiert wurden.'],
-    ['Der beobachtete Himmel wird über eine Kugel-Transformation berechnet', 'Das Modell sagt “flache Welt”, nutzt für beobachtete Höhe und Richtung aber den Standardhimmel aus RA/Dec.', 'Azimut und Elevation sind die zentralen Beobachtungswerte. Der Code gewinnt sie aus RA/Dec, Breite, Länge und Sternzeit, bevor die FE-Zeichnung beginnt.', 'Beobachter, darüber lokaler Himmel, danach erst die Scheibe.', 'Die FE-Szene ist nicht die Quelle der Beobachtung. Sie ist ein Bild nach einer Standard-Himmelsrechnung.'],
+    ['Der beobachtete Himmel wird über eine Kugel-Transformation berechnet', 'Das Modell sagt “flache Welt”, nutzt für beobachtete Höhe und Richtung aber den Standardhimmel aus RA/Dec.', 'Azimut und Elevation sind die zentralen Beobachtungswerte. Der Code gewinnt sie aus RA/Dec, Breite, Länge und Sternzeit, bevor die FE-Zeichnung beginnt.', 'Links entstehen beobachtete Höhe und Richtung. Rechts bekommt die FE-Scheibe diese fertige Richtung, die nicht zu ihrer eigenen Geometrie passt.', 'Die FE-Szene ist nicht die Quelle der Beobachtung. Sie ist ein Bild nach einer Standard-Himmelsrechnung.'],
     ['Das Lat/Long-Gitter ist hart als AE-Kartenprojektion codiert', 'Die FE-Scheibe ist eine Kartenprojektion. Eine Projektion kann nützlich sein, ist aber nicht automatisch die physische Form der Welt.', 'Die azimutal äquidistante Projektion ist eine Zeichenmethode. Richtung Süden verändert sie Breitenkreise und Distanzen stark.', 'Vergleich eines Breitenkreisumfangs auf Kugel und FE-Scheibe.', 'Das Modell verwechselt Kartenprojektion mit physischer Geometrie.'],
     ['Körperhöhen sind handabgestimmte Bänder', 'Die Höhe von Sonne, Mond und Planeten über dem Dom kommt aus einem gewählten Band, nicht aus unabhängiger Lichtphysik.', 'Die Höhen werden aus Deklination und den handgewählten Konstanten HEADROOM und SUN_RANGE abgeleitet.', 'Ein Deklinationsregler bewegt den Körper ohne physische Distanz hoch und runter.', 'Das ist Bildabstimmung, kein unabhängiger physikalischer Mechanismus.'],
     ['Finsternisse werden aus einem realen Katalog abgespielt', 'Finsternisse werden nicht von einem FE-Prädiktor gefunden. Sie werden aus einem realen Katalog geladen und abgespielt.', 'Die Demos entstehen aus dem AstroPixels/JPL-DE405-Katalog. Der FE-Vorhersagezweig ist nur ein Platzhalter.', 'Finsterniskatalog gegen leeren FE-Prädiktor.', 'Bekannte Finsternisse abzuspielen ist keine Vorhersage eines flachen Modells.'],
@@ -580,7 +717,7 @@ const problemTranslations = {
   es: [
     ['El modelo solo funciona como imagen para un observador', 'El código puede producir un cielo localmente correcto para un observador elegido, pero eso todavía no es un modelo de una realidad compartida por varios observadores al mismo tiempo.', 'Una vez que el cielo se obtiene mediante la transformación estándar de RA/Dec al cielo local, la escena FE solo redibuja un resultado ya calculado. No aporta un único mundo FE coherente que sostenga a varios observadores a la vez.', 'Dos observadores, dos imágenes localmente correctas, pero sin una geometría FE común que soporte ambas a la vez.', 'Esto no es una descripción alternativa de la realidad. Es solo una transformación visual local de un cielo ya resuelto.'],
     ['El modelo usa efemérides DE405 ya preparadas', 'El modelo afirma mostrar un cielo FE funcional, pero toma posiciones precisas de tablas astronómicas ya hechas.', 'La fuente por defecto es AstroPixels/JPL DE405. La precisión del cielo viene de tablas astronómicas modernas, no de la geometría plana del modelo.', 'Flujo DE405 -> RA/Dec -> cielo local -> dibujo FE.', 'Las posiciones correctas no son prueba de un modelo FE porque fueron importadas de otra fuente.'],
-    ['El cielo observado se calcula con una transformación de globo', 'El modelo dice “mundo plano”, pero para altura y dirección observadas usa un cielo local estándar desde RA/Dec.', 'Azimut y elevación son los valores observados clave. El código los obtiene desde RA/Dec, latitud, longitud y tiempo sidéreo antes del dibujo FE.', 'Observador, cielo local encima y solo después el disco.', 'La escena FE no es la fuente de la observación. Es una imagen después de un cálculo estándar del cielo.'],
+    ['El cielo observado se calcula con una transformación de globo', 'El modelo dice “mundo plano”, pero para altura y dirección observadas usa un cielo local estándar desde RA/Dec.', 'Azimut y elevación son los valores observados clave. El código los obtiene desde RA/Dec, latitud, longitud y tiempo sidéreo antes del dibujo FE.', 'A la izquierda se producen altura y dirección observadas. A la derecha el disco FE recibe esa dirección ya hecha, pero no coincide con su propia geometría.', 'La escena FE no es la fuente de la observación. Es una imagen después de un cálculo estándar del cielo.'],
     ['La red lat/long es una proyección AE fija', 'El disco FE es una proyección de mapa. Una proyección puede ser útil, pero no es automáticamente la forma física del mundo.', 'La proyección azimutal equidistante es una forma de dibujar mapas. Hacia el sur altera mucho tamaños y distancias.', 'Comparación de un paralelo en esfera y en disco FE.', 'El modelo confunde una proyección de mapa con geometría física.'],
     ['Las alturas de los cuerpos son bandas ajustadas a mano', 'La altura del Sol, la Luna y los planetas sobre la cúpula viene de una banda elegida, no de física independiente de la luz.', 'Las alturas se derivan de declinación y de las constantes manuales HEADROOM y SUN_RANGE.', 'Un control de declinación mueve el cuerpo arriba y abajo sin distancia física.', 'Esto es ajuste visual, no un mecanismo físico independiente.'],
     ['Los eclipses se reproducen desde un catálogo real', 'Los eclipses no son encontrados por un predictor FE. Se cargan desde un catálogo real y se reproducen.', 'Las demos se construyen desde el catálogo AstroPixels/JPL DE405. La rama predictiva FE es solo un marcador de posición.', 'Catálogo de eclipses frente a predictor FE vacío.', 'Reproducir eclipses conocidos no es predicción de un modelo plano.'],
@@ -594,7 +731,7 @@ const problemTranslations = {
   ru: [
     ['Модель работает только как картинка для одного наблюдателя', 'Код может сделать локально правильное небо для выбранного зрителя, но это еще не модель реальности, общей для нескольких наблюдателей одновременно.', 'Как только небо получено через стандартное преобразование RA/Dec в локальное небо, FE-сцена лишь перерисовывает уже вычисленный результат. Она не дает единого FE-мира, который одновременно несет нескольких наблюдателей.', 'Два наблюдателя, две локально правильные картинки, но нет общей FE-геометрии, которая держала бы их вместе.', 'Это не альтернативное описание реальности. Это лишь локальная визуализация уже решенного неба.'],
     ['Модель использует готовые эфемериды DE405', 'Модель заявляет, что показывает рабочее FE-небо, но точные положения берет из готовых астрономических таблиц.', 'Источник по умолчанию - AstroPixels/JPL DE405. Точность неба приходит из современных астрономических таблиц, а не из плоской геометрии модели.', 'Поток данных DE405 -> RA/Dec -> локальное небо -> FE-рисунок.', 'Правильные положения тел не являются доказательством FE-модели, потому что они импортированы из другого источника.'],
-    ['Наблюдаемое небо считается через преобразование глобуса', 'Модель говорит “плоский мир”, но для наблюдаемой высоты и направления использует стандартное локальное небо из RA/Dec.', 'Азимут и высота - главные наблюдаемые значения. Код получает их из RA/Dec, широты, долготы и звездного времени до FE-рисования.', 'Наблюдатель, локальное небо над ним, и только потом диск.', 'FE-сцена не является источником наблюдений. Это картинка после стандартного расчета неба.'],
+    ['Наблюдаемое небо считается через преобразование глобуса', 'Модель говорит “плоский мир”, но для наблюдаемой высоты и направления использует стандартное локальное небо из RA/Dec.', 'Азимут и высота - главные наблюдаемые значения. Код получает их из RA/Dec, широты, долготы и звездного времени до FE-рисования.', 'Слева получаются наблюдаемая высота и направление. Справа FE-диск получает уже готовое направление, но оно не сходится с его собственной геометрией.', 'FE-сцена не является источником наблюдений. Это картинка после стандартного расчета неба.'],
     ['Сетка lat/long жестко задана как AE-проекция', 'FE-диск является картографической проекцией. Проекция может быть полезной картинкой, но не является физической формой мира.', 'Азимутальная равнопромежуточная проекция - способ рисовать карту. К югу она сильно меняет размеры параллелей и расстояния.', 'Сравнение окружности параллели на сфере и на FE-диске.', 'Модель путает картографическую проекцию с физической геометрией мира.'],
     ['Высоты тел являются вручную настроенными полосами', 'Высота Солнца, Луны и планет над куполом берется из выбранной полосы, а не из независимой физики света.', 'Высоты выводятся из склонения и вручную выбранных констант HEADROOM и SUN_RANGE.', 'Ползунок склонения двигает тело вверх-вниз без физического расстояния.', 'Это настройка картинки, а не независимый физический механизм.'],
     ['Затмения воспроизводятся из реального каталога', 'Затмения не находятся FE-прогнозом. Они загружаются из реального каталога и воспроизводятся.', 'Демо затмений строятся из каталога AstroPixels/JPL DE405. FE-ветка прогнозирования - только заглушка.', 'Каталог затмений против пустого FE-прогноза.', 'Воспроизведение известных затмений не является прогнозом плоской модели.'],
@@ -663,7 +800,9 @@ function applyTheme() {
   const themeButton = document.getElementById('themeCycle');
   if (themeButton) {
     const t = getUi();
-    themeButton.textContent = THEME_LABELS[currentTheme];
+    const icon = themeButton.querySelector('.theme-cycle-icon');
+    if (icon) icon.innerHTML = THEME_ICONS[currentTheme] || THEME_ICONS.light;
+    themeButton.dataset.theme = currentTheme;
     themeButton.setAttribute('aria-label', `${t.changeTheme}: ${THEME_LABELS[currentTheme]}`);
     themeButton.title = `${t.changeTheme}: ${THEME_LABELS[currentTheme]}`;
   }
@@ -793,29 +932,69 @@ function setText(selector, value, html = false) {
   }
 }
 
+function getResponsiveHeroTitle(t = getUi()) {
+  return window.innerWidth <= 560 && t.heroTitleMobile ? t.heroTitleMobile : t.heroTitle;
+}
+
 function applyStaticText() {
   const t = getUi();
   const translatedProblems = getProblems();
   const criticalCount = translatedProblems.filter(problem => problem.severity === 'Kritická').length;
   document.documentElement.lang = currentLang;
-  document.title = t.pageTitle;
-  setText('.brand-block h1', t.pageTitle);
-  setText('.brand-block p', t.brandSubtitle);
-  setText('.side-note strong', t.sideTitle);
-  setText('.side-note span', t.sideBody);
+  document.title = t.documentTitle || t.pageTitle;
+  setText('.brand-block h1, .topbar-brand-text h1', t.pageTitle);
+  setText('.brand-block p, .topbar-brand-text p', t.brandSubtitle);
+  const topbar = document.querySelector('.topbar');
+  if (topbar) topbar.setAttribute('aria-label', t.headerLabel);
+  const topbarNav = document.querySelector('.topbar-nav');
+  if (topbarNav) topbarNav.setAttribute('aria-label', t.sectionsNavLabel);
+  const burger = document.querySelector('.topbar-burger');
+  if (burger) burger.setAttribute('aria-label', t.burgerOpenMenu);
+  const floatingDock = document.querySelector('.floating-dock');
+  if (floatingDock) floatingDock.setAttribute('aria-label', t.readingProgressLabel);
+  const dockMini = document.querySelector('.dock-mini');
+  if (dockMini) dockMini.setAttribute('aria-label', t.miniMapLabel);
+  const dockTop = document.querySelector('.dock-top');
+  if (dockTop) {
+    dockTop.setAttribute('aria-label', t.backToTop);
+    dockTop.title = t.backToTop;
+  }
+  const sourceLinks = document.querySelector('.source-links');
+  if (sourceLinks) sourceLinks.setAttribute('aria-label', t.sourceLinksLabel);
+  const summaryPanel = document.querySelector('.summary-panel');
+  if (summaryPanel) summaryPanel.setAttribute('aria-label', t.summaryLabel);
+  const explainStrip = document.querySelector('.explain-strip');
+  if (explainStrip) explainStrip.setAttribute('aria-label', t.explainLabel);
+  const flowDiagram = document.getElementById('flowDiagram');
+  if (flowDiagram) flowDiagram.setAttribute('aria-label', t.flowDiagramLabel);
+  const toolbar = document.querySelector('.toolbar');
+  if (toolbar) toolbar.setAttribute('aria-label', t.filtersLabel);
+  const projectionVisual = document.getElementById('projectionVisual');
+  if (projectionVisual) projectionVisual.setAttribute('aria-label', t.projectionVisualLabel);
+  const footer = document.querySelector('.audit-footer');
+  if (footer) footer.setAttribute('aria-label', t.footerLabel);
+  const problemCountNode = document.querySelector('[data-problem-count]');
+  if (problemCountNode) problemCountNode.textContent = String(translatedProblems.length);
+  const critBadge = document.querySelector('.nav-badge--crit');
+  if (critBadge) critBadge.textContent = `${criticalCount}`;
 
-  document.querySelectorAll('.nav-list a').forEach((link, index) => {
-    link.textContent = t.nav[index];
+  document.querySelectorAll('.nav-timeline a .nav-title, .topbar-nav a .nav-title').forEach((node, index) => {
+    const idx = index % (t.nav ? t.nav.length : 6);
+    if (t.nav && t.nav[idx]) node.textContent = t.nav[idx];
+  });
+  document.querySelectorAll('.dock-mini a[data-dock-link]').forEach((link, index) => {
+    const idx = index % (t.nav ? t.nav.length : 6);
+    if (t.nav && t.nav[idx]) link.title = t.nav[idx];
   });
 
   setText('.intro-copy .eyebrow', t.introEyebrow);
-  setText('.intro-copy h2', t.heroTitle);
+  setText('.intro-copy h2', getResponsiveHeroTitle(t));
   setText('.intro-copy > p:not(.eyebrow)', t.heroBody, true);
   setText('.home-corner', t.homeLink);
-  setText('.source-links a:nth-child(1)', t.liveDemo);
-  setText('.source-links a:nth-child(2)', t.sourceCode);
-  setText('.intro-actions .primary-action', t.openProblems);
-  setText('.intro-actions .secondary-action', t.showFlow);
+  setText('.source-links a:nth-child(1) .source-badge-label', t.liveDemo);
+  setText('.source-links a:nth-child(2) .source-badge-label', t.sourceCode);
+  setText('.audit-footer-line', t.footerLine);
+  setText('.audit-footer-meta', t.footerMeta);
   document.querySelectorAll('.summary-row').forEach((row, index) => {
     const title = row.querySelector('.summary-copy strong');
     const detail = row.querySelector('.summary-copy small');
@@ -840,12 +1019,15 @@ function applyStaticText() {
   setText('#problemy h2', t.problemsTitle);
   setText('#problemy .section-heading > p:not(.eyebrow)', t.problemsBody);
   document.querySelectorAll('.filter-btn').forEach((button, index) => {
-    button.textContent = t.filters[index];
-  });
-  document.querySelectorAll('.severity-legend span').forEach((item, index) => {
-    const dot = item.querySelector('.dot');
-    item.textContent = t.legend[index];
-    if (dot) item.prepend(dot);
+    const labelSpan = button.querySelector('span');
+    if (labelSpan) {
+      labelSpan.textContent = t.filters[index];
+    } else {
+      button.textContent = t.filters[index];
+    }
+    if (index > 0 && t.legend && t.legend[index - 1]) {
+      button.title = t.legend[index - 1];
+    }
   });
 
   setText('#mapa .eyebrow', t.mapEyebrow);
@@ -878,6 +1060,23 @@ function applyStaticText() {
   applyTheme();
 }
 
+function syncBannerSubtitleWidth() {
+  const title = document.querySelector('.banner-title');
+  const subtitle = document.querySelector('.banner-subtitle');
+  if (!title || !subtitle) return;
+  subtitle.style.width = '';
+  const range = document.createRange();
+  range.selectNodeContents(title);
+  const rects = range.getClientRects();
+  let maxLineWidth = 0;
+  for (const rect of rects) {
+    if (rect.width > maxLineWidth) maxLineWidth = rect.width;
+  }
+  if (maxLineWidth > 0) {
+    subtitle.style.width = `${Math.round(maxLineWidth)}px`;
+  }
+}
+
 function setLanguage(lang) {
   currentLang = LANGS.includes(lang) ? lang : 'en';
   localStorage.setItem('feAuditLang', currentLang);
@@ -886,6 +1085,7 @@ function setLanguage(lang) {
   renderProblems(currentFilter);
   updateProjection();
   renderEclipse(currentEclipseMode);
+  requestAnimationFrame(syncBannerSubtitleWidth);
 }
 
 function svgIcon(type) {
@@ -1029,11 +1229,17 @@ const visualText = {
     skyAngle: 'úhel na obloze',
     noLight: 'FE světelná geometrie zde není',
     liveSays: 'Live demo říká',
+    conceptualModel: 'konceptuální model',
+    fictitiousObserver: 'fiktivní pozorovatel',
     twoObservers: '2 pozorovatelé',
+    oneObject: '1 objekt',
+    sharedSky: 'jedna sdílená obloha',
+    feConflict: 'na FE se to rozpadá',
     noSharedWorld: 'bez společného FE světa',
     notProof1: 'není to',
     notProof2: 'fyzikální',
-    notProof3: 'důkaz'
+    notProof3: 'důkaz',
+    schemaSoon: 'schéma bude doplněno'
   },
   en: {
     readyData: 'ready data',
@@ -1060,11 +1266,17 @@ const visualText = {
     skyAngle: 'angle in the sky',
     noLight: 'FE light geometry is absent',
     liveSays: 'Live demo says',
+    conceptualModel: 'conceptual model',
+    fictitiousObserver: 'fictitious observer',
     twoObservers: '2 observers',
+    oneObject: '1 object',
+    sharedSky: 'one shared sky',
+    feConflict: 'flat-earth conflict',
     noSharedWorld: 'no shared FE world',
     notProof1: 'not a',
     notProof2: 'physical',
-    notProof3: 'proof'
+    notProof3: 'proof',
+    schemaSoon: 'diagram will be added'
   }
 };
 
@@ -1094,11 +1306,17 @@ visualText.de = {
   skyAngle: 'Winkel am Himmel',
   noLight: 'FE-Lichtgeometrie fehlt',
   liveSays: 'Live-Demo sagt',
+  conceptualModel: 'konzeptuelles Modell',
+  fictitiousObserver: 'fiktiver Beobachter',
   twoObservers: '2 Beobachter',
+  oneObject: '1 Objekt',
+  sharedSky: 'ein gemeinsamer Himmel',
+  feConflict: 'im FE zerfällt es',
   noSharedWorld: 'keine gemeinsame FE-Welt',
   notProof1: 'kein',
   notProof2: 'physischer',
-  notProof3: 'Beweis'
+  notProof3: 'Beweis',
+  schemaSoon: 'Schema wird ergänzt'
 };
 
 visualText.es = {
@@ -1127,11 +1345,17 @@ visualText.es = {
   skyAngle: 'ángulo en el cielo',
   noLight: 'falta geometría de luz FE',
   liveSays: 'La demo dice',
+  conceptualModel: 'modelo conceptual',
+  fictitiousObserver: 'observador ficticio',
   twoObservers: '2 observadores',
+  oneObject: '1 objeto',
+  sharedSky: 'un cielo compartido',
+  feConflict: 'en FE se rompe',
   noSharedWorld: 'sin mundo FE compartido',
   notProof1: 'no es',
   notProof2: 'prueba',
-  notProof3: 'física'
+  notProof3: 'física',
+  schemaSoon: 'el diagrama será añadido'
 };
 
 visualText.ru = {
@@ -1160,23 +1384,62 @@ visualText.ru = {
   skyAngle: 'угол на небе',
   noLight: 'FE-геометрия света отсутствует',
   liveSays: 'Live demo говорит',
+  conceptualModel: 'концептуальная модель',
+  fictitiousObserver: 'фиктивный наблюдатель',
   twoObservers: '2 наблюдателя',
+  oneObject: '1 объект',
+  sharedSky: 'одно общее небо',
+  feConflict: 'в FE всё ломается',
   noSharedWorld: 'нет общего FE-мира',
   notProof1: 'не',
   notProof2: 'физическое',
-  notProof3: 'доказательство'
+  notProof3: 'доказательство',
+  schemaSoon: 'схема будет добавлена'
 };
 
 function smallVisual(id) {
   const v = visualText[currentLang] || visualText.en;
+  const wrapSvgLines = (text, maxChars) => {
+    const words = String(text).split(/\s+/).filter(Boolean);
+    const lines = [];
+    let current = '';
+
+    words.forEach(word => {
+      const candidate = current ? `${current} ${word}` : word;
+      if (candidate.length <= maxChars || !current) {
+        current = candidate;
+      } else {
+        lines.push(current);
+        current = word;
+      }
+    });
+
+    if (current) {
+      lines.push(current);
+    }
+
+    return lines;
+  };
+
+  const svgTextBlock = (lines, x, y, options = {}) => {
+    const {
+      size = 12,
+      weight = 400,
+      lineHeight = 18,
+      fill = '#18212f'
+    } = options;
+
+    return `<text x="${x}" y="${y}" font-size="${size}" font-weight="${weight}" fill="${fill}">${lines.map((line, index) => `<tspan x="${x}" dy="${index === 0 ? 0 : lineHeight}">${line}</tspan>`).join('')}</text>`;
+  };
+
   if (id === 'FE-000') {
-    return `<svg viewBox="0 0 360 140"><circle cx="88" cy="74" r="34" fill="#eef7ff" stroke="#2667ff" stroke-width="3"/><circle cx="88" cy="74" r="4" fill="#18212f"/><path d="M88 74L112 46" stroke="#c93636" stroke-width="3"/><circle cx="272" cy="74" r="34" fill="#eef7ff" stroke="#2667ff" stroke-width="3"/><circle cx="272" cy="74" r="4" fill="#18212f"/><path d="M272 74L296 46" stroke="#c93636" stroke-width="3"/><text class="panel-label" x="42" y="126" font-size="10.5" font-weight="900">${v.twoObservers}</text><path class="panel-muted-stroke" d="M134 74h92" stroke="#18212f" stroke-width="3" stroke-dasharray="7 5"/><text class="panel-label" x="142" y="48" font-size="10.5" font-weight="900">${v.noSharedWorld}</text></svg>`;
+    return `<svg viewBox="0 0 360 140"><circle cx="88" cy="78" r="34" fill="#eef7ff" stroke="#2667ff" stroke-width="3"/><circle cx="70" cy="95" r="4" fill="#18212f"/><circle cx="106" cy="95" r="4" fill="#18212f"/><circle cx="88" cy="28" r="8" fill="#f4c542" stroke="#c57a00" stroke-width="2"/><path d="M70 95L86 35M106 95L90 35" stroke="#c93636" stroke-width="3"/><text class="panel-label" x="88" y="124" text-anchor="middle" font-size="9.2" font-weight="900">${v.twoObservers} -> ${v.oneObject}</text><text class="panel-label" x="88" y="18" text-anchor="middle" font-size="9.2" font-weight="900">${v.sharedSky}</text><path class="panel-muted-stroke" d="M146 78h58" stroke="#18212f" stroke-width="3" stroke-dasharray="7 5"/><path class="panel-muted-stroke" d="M196 70l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><ellipse cx="274" cy="88" rx="52" ry="20" fill="#fff8df" stroke="#c57a00" stroke-width="2"/><circle cx="244" cy="88" r="4" fill="#18212f"/><circle cx="304" cy="88" r="4" fill="#18212f"/><circle cx="274" cy="36" r="8" fill="#f4c542" stroke="#c57a00" stroke-width="2"/><path d="M244 88L260 55M304 88L288 55" stroke="#c93636" stroke-width="3"/><path d="M252 48L296 96M296 48L252 96" stroke="#c93636" stroke-width="4" stroke-linecap="round"/><text class="panel-label" x="274" y="124" text-anchor="middle" font-size="9.2" font-weight="900">${v.feConflict}</text></svg>`;
   }
   if (id === 'FE-001') {
     return `<svg viewBox="0 0 360 130"><rect x="10" y="18" width="86" height="64" rx="6" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/><text x="25" y="45" font-size="13" font-weight="900">DE405</text><text x="21" y="65" font-size="10">${v.readyData}</text><path class="panel-muted-stroke" d="M103 50h44" stroke="#18212f" stroke-width="3"/><path class="panel-muted-stroke" d="M139 42l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><rect x="154" y="18" width="86" height="64" rx="6" fill="#fff8df" stroke="#c57a00" stroke-width="2"/><text x="176" y="45" font-size="13" font-weight="900">RA/Dec</text><text x="166" y="65" font-size="10">${v.coords}</text><path class="panel-muted-stroke" d="M247 50h44" stroke="#18212f" stroke-width="3"/><path class="panel-muted-stroke" d="M283 42l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><circle cx="321" cy="50" r="30" fill="#f8fbfa" stroke="#008f8c" stroke-width="2"/><text x="310" y="47" font-size="13" font-weight="900">FE</text><text x="302" y="63" font-size="10">${v.drawing}</text><text x="17" y="113" font-size="10.5" fill="#c93636" font-weight="900">${v.accuracyLeft}</text></svg>`;
   }
   if (id === 'FE-002') {
-    return `<svg viewBox="0 0 360 135"><circle cx="86" cy="74" r="48" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/><path d="M38 74a48 48 0 0 0 96 0" fill="none" stroke="#2667ff" stroke-width="2"/><circle cx="86" cy="74" r="5" fill="#18212f"/><path d="M86 74L128 34" stroke="#c93636" stroke-width="4"/><text class="panel-label" x="42" y="126" font-size="11" font-weight="900">${v.localSky}</text><path class="panel-muted-stroke" d="M150 74h54" stroke="#18212f" stroke-width="3"/><path class="panel-muted-stroke" d="M196 66l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><rect x="221" y="25" width="112" height="82" rx="8" fill="#fff8df" stroke="#c57a00" stroke-width="2"/><text x="230" y="55" font-size="11" font-weight="900">${v.azEl}</text><text x="238" y="77" font-size="10">${v.alreadyComputed}</text><text x="231" y="96" font-size="10">${v.beforeFe}</text></svg>`;
+    return `<svg viewBox="0 0 360 135"><defs><marker id="arrow-fe-002" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#9fb0c8"/></marker></defs><circle cx="92" cy="72" r="48" fill="#eef7ff" stroke="#2667ff" stroke-width="3"/><path d="M49 91a49 49 0 0 0 86 0" fill="none" stroke="#2667ff" stroke-width="4" opacity=".55"/><path d="M55 91h74" stroke="#18212f" stroke-width="3" stroke-linecap="round" opacity=".45"/><circle cx="92" cy="91" r="5.5" fill="#18212f"/><circle cx="126" cy="42" r="9" fill="#f4c542" stroke="#c57a00" stroke-width="2"/><path d="M92 91 122 48" stroke="#c93636" stroke-width="5" stroke-linecap="round"/><path d="M110 91a22 22 0 0 0-6-16" fill="none" stroke="#c93636" stroke-width="3.5" stroke-linecap="round"/><path d="M70 107a35 13 0 0 0 44 0" fill="none" stroke="#2667ff" stroke-width="3.5" stroke-linecap="round"/><path d="M110 102l8 5-8 5" fill="none" stroke="#2667ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M151 72h44" stroke="#9fb0c8" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-fe-002)"/><ellipse cx="278" cy="98" rx="56" ry="18" fill="#fff8df" stroke="#c57a00" stroke-width="3"/><path d="M222 98a56 56 0 0 1 112 0" fill="none" stroke="#c57a00" stroke-width="3"/><circle cx="250" cy="98" r="5.5" fill="#18212f"/><circle cx="318" cy="70" r="9" fill="#f4c542" stroke="#c57a00" stroke-width="2"/><path d="M250 98 313 73" stroke="#c57a00" stroke-width="5" stroke-linecap="round"/><path d="M250 98 278 47" stroke="#c93636" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="7 6"/><path d="M250 98h25" stroke="#c93636" stroke-width="3" stroke-linecap="round" opacity=".55"/><path d="M275 98a28 28 0 0 0-5-15" fill="none" stroke="#c93636" stroke-width="3" stroke-linecap="round" opacity=".8"/><path d="M290 61l20 20M310 61l-20 20" stroke="#c93636" stroke-width="5" stroke-linecap="round"/></svg>`;
   }
   if (id === 'FE-003') {
     return `<svg viewBox="0 0 360 135"><circle cx="82" cy="62" r="46" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/><ellipse cx="82" cy="62" rx="23" ry="8" fill="none" stroke="#c93636" stroke-width="4"/><text class="panel-label" x="36" y="123" font-size="10.5" font-weight="900">${v.globeSouth}</text><path class="panel-muted-stroke" d="M145 62h50" stroke="#18212f" stroke-width="3"/><path class="panel-muted-stroke" d="M187 54l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><circle cx="278" cy="62" r="46" fill="#fff8df" stroke="#c57a00" stroke-width="2"/><circle cx="278" cy="62" r="41" fill="none" stroke="#c93636" stroke-width="4"/><text class="panel-label" x="220" y="123" font-size="10.5" font-weight="900">${v.diskSouth}</text></svg>`;
@@ -1203,9 +1466,14 @@ function smallVisual(id) {
     return `<svg viewBox="0 0 360 135"><circle cx="70" cy="68" r="26" fill="#f4c542" stroke="#c57a00" stroke-width="3"/><circle cx="242" cy="68" r="22" fill="#d6dbe5" stroke="#5e6b7e" stroke-width="3"/><path d="M70 68L160 42L242 68" fill="none" stroke="#2667ff" stroke-width="4"/><text class="panel-label" x="126" y="35" font-size="11" font-weight="900">${v.skyAngle}</text><path d="M58 112h230" stroke="#c93636" stroke-width="3" stroke-dasharray="6 5"/><text class="panel-label" x="65" y="128" font-size="10.5" font-weight="900">${v.noLight}</text></svg>`;
   }
   if (id === 'FE-011') {
-    return `<svg viewBox="0 0 360 135"><rect x="18" y="18" width="150" height="90" rx="8" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/><text x="34" y="45" font-size="12" font-weight="900">${v.liveSays}</text><text x="38" y="66" font-size="12">conceptual model</text><text x="38" y="84" font-size="12">fictitious observer</text><path class="panel-muted-stroke" d="M182 62h45" stroke="#18212f" stroke-width="3"/><path class="panel-muted-stroke" d="M219 54l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><rect x="246" y="18" width="96" height="90" rx="8" fill="#fff8df" stroke="#c57a00" stroke-width="2"/><text x="260" y="51" font-size="12" font-weight="900">${v.notProof1}</text><text x="256" y="72" font-size="12" font-weight="900">${v.notProof2}</text><text x="257" y="93" font-size="12" font-weight="900">${v.notProof3}</text></svg>`;
+    const leftTop = wrapSvgLines(v.liveSays, 15);
+    const leftMid = wrapSvgLines(v.conceptualModel, 18);
+    const leftBottom = wrapSvgLines(v.fictitiousObserver, 18);
+    const rightLines = [v.notProof1, v.notProof2, v.notProof3].flatMap(line => wrapSvgLines(line, 10));
+
+    return `<svg viewBox="0 0 360 135"><rect x="18" y="18" width="150" height="90" rx="8" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/>${svgTextBlock(leftTop, 34, 42, { size: 11.5, weight: 900, lineHeight: 14 })}${svgTextBlock(leftMid, 38, 66, { size: 10.4, lineHeight: 14 })}${svgTextBlock(leftBottom, 38, 88, { size: 10.4, lineHeight: 14 })}<path class="panel-muted-stroke" d="M182 62h45" stroke="#18212f" stroke-width="3"/><path class="panel-muted-stroke" d="M219 54l12 8-12 8" fill="none" stroke="#18212f" stroke-width="3"/><rect x="246" y="18" width="96" height="90" rx="8" fill="#fff8df" stroke="#c57a00" stroke-width="2"/>${svgTextBlock(rightLines, 258, 50, { size: 11.3, weight: 900, lineHeight: 18 })}</svg>`;
   }
-  return `<svg viewBox="0 0 360 120"><rect x="20" y="25" width="320" height="70" rx="8" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/><text x="42" y="65" font-size="14" font-weight="900">Schéma bude doplněno</text></svg>`;
+  return `<svg viewBox="0 0 360 120"><rect x="20" y="25" width="320" height="70" rx="8" fill="#eef7ff" stroke="#2667ff" stroke-width="2"/><text x="42" y="65" font-size="14" font-weight="900">${v.schemaSoon}</text></svg>`;
 }
 
 function setFilter(filter) {
@@ -1269,6 +1537,10 @@ function renderEclipse(mode = 'catalog') {
 document.addEventListener('DOMContentLoaded', () => {
   setLanguage(currentLang);
   setTheme(currentTheme);
+  window.addEventListener('resize', () => requestAnimationFrame(syncBannerSubtitleWidth));
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncBannerSubtitleWidth);
+  }
 
   document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', () => setFilter(button.dataset.filter));
@@ -1289,4 +1561,121 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextIndex = (THEMES.indexOf(currentTheme) + 1) % THEMES.length;
     setTheme(THEMES[nextIndex]);
   });
+
+  initScrollspy();
+  initSidebarPin();
+  initDockProgress();
+  initBurger();
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(() => setText('.intro-copy h2', getResponsiveHeroTitle()));
+  });
 });
+
+function initSidebarPin() {
+  const sidebar = document.querySelector('.sidebar--rail');
+  const pin = document.querySelector('.sidebar-pin');
+  if (!sidebar || !pin) return;
+  if (localStorage.getItem('feAuditSidebarPinned') === '1') {
+    sidebar.classList.add('is-pinned');
+  }
+  pin.addEventListener('click', () => {
+    sidebar.classList.toggle('is-pinned');
+    localStorage.setItem('feAuditSidebarPinned', sidebar.classList.contains('is-pinned') ? '1' : '0');
+  });
+}
+
+function initScrollspy() {
+  const linkSelectors = '.nav-timeline a[href^="#"], .topbar-nav a[href^="#"], .dock-mini a[href^="#"]';
+  const allLinks = Array.from(document.querySelectorAll(linkSelectors));
+  if (!allLinks.length) return;
+  const sectionToLinks = new Map();
+  const sectionsInOrder = [];
+  allLinks.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const section = document.getElementById(id);
+    if (!section) return;
+    if (!sectionToLinks.has(section)) {
+      sectionToLinks.set(section, []);
+      sectionsInOrder.push(section);
+    }
+    sectionToLinks.get(section).push(link);
+  });
+  if (!sectionToLinks.size) return;
+  const setActive = section => {
+    const activeLinks = sectionToLinks.get(section) || [];
+    allLinks.forEach(l => l.classList.toggle('is-active', activeLinks.includes(l)));
+  };
+  const lastSection = sectionsInOrder[sectionsInOrder.length - 1];
+  const isAtBottom = () => {
+    const scrolledToEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    return scrolledToEnd;
+  };
+  const pickActive = () => {
+    if (isAtBottom() && lastSection) {
+      setActive(lastSection);
+      return true;
+    }
+    return false;
+  };
+  const observer = new IntersectionObserver(entries => {
+    if (pickActive()) return;
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible.length) setActive(visible[0].target);
+  }, {
+    rootMargin: '-30% 0px -55% 0px',
+    threshold: [0, 0.2, 0.5, 0.8, 1]
+  });
+  sectionsInOrder.forEach(section => observer.observe(section));
+  window.addEventListener('scroll', () => { pickActive(); }, { passive: true });
+  setActive(sectionsInOrder[0]);
+}
+
+function initDockProgress() {
+  const arc = document.querySelector('.dock-progress-arc');
+  const num = document.querySelector('[data-dock-percent]');
+  const top = document.querySelector('.dock-top');
+  if (!arc || !num) return;
+  const circumference = 2 * Math.PI * 18;
+  arc.setAttribute('stroke-dasharray', String(circumference));
+  const update = () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+    arc.setAttribute('stroke-dashoffset', String(circumference * (1 - pct)));
+    num.textContent = `${Math.round(pct * 100)}%`;
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+  if (top) {
+    top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+}
+
+function initBurger() {
+  const burger = document.querySelector('.topbar-burger');
+  const nav = document.querySelector('.topbar-nav');
+  if (!burger || !nav) return;
+  const mobileNavBreakpoint = 760;
+  const apply = () => {
+    if (window.innerWidth <= mobileNavBreakpoint) {
+      nav.classList.add('is-collapsed');
+    } else {
+      nav.classList.remove('is-collapsed');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  };
+  apply();
+  window.addEventListener('resize', apply);
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-collapsed');
+    burger.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+  nav.addEventListener('click', evt => {
+    if (evt.target.closest('a') && window.innerWidth <= mobileNavBreakpoint) {
+      nav.classList.add('is-collapsed');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
